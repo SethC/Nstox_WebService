@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9e7bae0d-7521-4384-b305-92168500420e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:18491/BOService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BOService.wsdl" MetadataType="Wsdl" ID="5063ae10-8211-4a18-9e6d-22a9acec6e7d" SourceId="1" SourceUrl="http://localhost:18491/BOService.svc?wsdl" />
+    <MetadataFile FileName="BOService.disco" MetadataType="Disco" ID="27fcadc6-a625-494c-9264-9bc702cc06c6" SourceId="1" SourceUrl="http://localhost:18491/BOService.svc?disco" />
+    <MetadataFile FileName="BOService.xsd" MetadataType="Schema" ID="46953da4-0f7e-462a-aca9-a6d28a77e435" SourceId="1" SourceUrl="http://localhost:18491/BOService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BOService1.xsd" MetadataType="Schema" ID="5dfdc4ed-0065-4a45-9cda-7ee8d4252f38" SourceId="1" SourceUrl="http://localhost:18491/BOService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BOService2.xsd" MetadataType="Schema" ID="11798054-473a-4f8a-8ece-a9430bb64275" SourceId="1" SourceUrl="http://localhost:18491/BOService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BOService3.xsd" MetadataType="Schema" ID="23f139ea-014d-4d10-9d5c-67f69806df74" SourceId="1" SourceUrl="http://localhost:18491/BOService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

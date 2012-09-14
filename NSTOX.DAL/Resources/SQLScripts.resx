@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NewRetailer" xml:space="preserve">
+    <value>/****** Object:  Table [dbo].[JobAudit_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE [dbo].[JobAudit_{0}](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[FileType] [int] NOT NULL,
+	[FilePath] [nvarchar](250) NOT NULL,
+	[JobStatus] [smallint] NOT NULL,
+	[ItemsProcessed] [int] NOT NULL,
+	[NewItems] [int] NOT NULL,
+	[UpdatedItems] [int] NOT NULL,
+	[DeletedItems] [int] NOT NULL,
+	[ErrorCount] [int] NOT NULL,
+	[ProcessTime] [bigint] NOT NULL,
+ CONSTRAINT [PK_JobAudit_{0}] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) 
+) 
+
+/****** Object:  Table [dbo].[Department_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE [dbo].[Department_{0}](
+	[Id] [int] NOT NULL,
+	[Description] [nvarchar](25) NOT NULL,
+	[DateAdd] [datetime] NOT NULL,
+	[DateUpdated] [datetime] NULL,
+	[DateRemoved] [datetime] NULL,
+ CONSTRAINT [PK_Department_{0}] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) 
+) 
+
+/****** Object:  Table [dbo].[DataError_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE [dbo].[DataError_{0}](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Source] [smallint] NOT NULL,
+	[ElementId] [bigint] NOT NULL,
+	[Note] [nvarchar](250) NULL,
+ CONSTRAINT [PK_DataErrors_{0}] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) 
+) 
+
+/****** Object:  Table [dbo].[Item_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE [dbo].[Item_{0}](
+	[SKU] [bigint] NOT NULL,
+	[Description] [nvarchar](20) NOT NULL,
+	[DepartmentId] [int] NULL,
+	[PriceGroup] [int] NOT NULL,
+	[ProductGroup] [int] NOT NULL,
+	[Category7] [bit] NOT NULL,
+	[Category8] [bit] NOT NULL,
+	[Category9] [bit] NOT NULL,
+	[Category10] [bit] NOT NULL,
+	[Size] [nvarchar](10) NULL,
+	[Unit] [nvarchar](10) NULL,
+	[CurrentUnitPrice] [float] NOT NULL,
+	[QtyPrice] [float] NOT NULL,
+	[QtyBreak] [int] NOT NULL,
+	[DateAdd] [datetime] NOT NULL,
+	[DateUpdated] [datetime] NULL,
+	[DateRemoved] [datetime] NULL,
+ CONSTRAINT [PK_Item_{0}_{0}] PRIMARY KEY CLUSTERED 
+(
+	[SKU] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) 
+) 
+
+/****** Object:  Table [dbo].[DepartmentAudit_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE [dbo].[DepartmentAudit_{0}](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[DepartmentId] [int] NOT NULL,
+	[OldValue] [nvarchar](2000) NOT NULL,
+	[NewValue] [nvarchar](2000) NOT NULL,
+	[Date] [datetime] NOT NULL,
+ CONSTRAINT [PK_DepartmentAudit_{0}] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) 
+) 
+
+/****** Object:  Table [dbo].[Transaction_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE [dbo].[Transaction_{0}](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Number] [int] NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[TerminalNo] [int] NOT NULL,
+	[EmployeeNo] [int] NOT NULL,
+	[Line] [int] NOT NULL,
+	[SKU] [bigint] NULL,
+	[DepartmentId] [int] NULL,
+	[QuantitySold] [float] NOT NULL,
+	[UnitSell] [float] NOT NULL,
+	[UnitCost] [float] NOT NULL,
+	[ExtendedPrice] [float] NOT NULL,
+	[ExtendedCost] [float] NOT NULL,
+	[SellMargin] [float] NOT NULL,
+	[TaxAmount] [float] NOT NULL,
+ CONSTRAINT [PK_Transaction_{0}] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) 
+) 
+
+/****** Object:  Table [dbo].[ItemAudit_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE [dbo].[ItemAudit_{0}](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[SKU] [bigint] NOT NULL,
+	[OldValue] [nvarchar](2000) NOT NULL,
+	[NewValue] [nvarchar](2000) NOT NULL,
+	[Date] [datetime] NOT NULL,
+ CONSTRAINT [PK_ItemAudit_{0}] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) 
+) 
+
+/****** Object:  Default [DF_Item_{0}_Category7]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[Item_{0}] ADD  CONSTRAINT [DF_Item_{0}_Category7]  DEFAULT ((0)) FOR [Category7]
+
+/****** Object:  Default [DF_Item_{0}_Category8]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[Item_{0}] ADD  CONSTRAINT [DF_Item_{0}_Category8]  DEFAULT ((0)) FOR [Category8]
+
+/****** Object:  Default [DF_Item_{0}_Category9]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[Item_{0}] ADD  CONSTRAINT [DF_Item_{0}_Category9]  DEFAULT ((0)) FOR [Category9]
+
+/****** Object:  Default [DF_Item_{0}_Category10]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[Item_{0}] ADD  CONSTRAINT [DF_Item_{0}_Category10]  DEFAULT ((0)) FOR [Category10]
+
+/****** Object:  Default [DF_JobAudit_{0}_Status]    Script Date: 07/06/2012 10:57:35 ******/
+ALTER TABLE [dbo].[JobAudit_{0}] ADD  CONSTRAINT [DF_JobAudit_{0}_Status]  DEFAULT ((1)) FOR [JobStatus]
+
+/****** Object:  Default [DF_JobAudit_{0}_ItemsProcessed]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[JobAudit_{0}] ADD  CONSTRAINT [DF_JobAudit_{0}_ItemsProcessed]  DEFAULT ((0)) FOR [ItemsProcessed]
+
+/****** Object:  Default [DF_JobAudit_{0}_NewItems]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[JobAudit_{0}] ADD  CONSTRAINT [DF_JobAudit_{0}_NewItems]  DEFAULT ((0)) FOR [NewItems]
+
+/****** Object:  Default [DF_JobAudit_{0}_UpdatedItems]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[JobAudit_{0}] ADD  CONSTRAINT [DF_JobAudit_{0}_UpdatedItems]  DEFAULT ((0)) FOR [UpdatedItems]
+
+/****** Object:  Default [DF_JobAudit_{0}_DeletedItems]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[JobAudit_{0}] ADD  CONSTRAINT [DF_JobAudit_{0}_DeletedItems]  DEFAULT ((0)) FOR [DeletedItems]
+
+/****** Object:  Default [DF_JobAudit_{0}_ErrorCount]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[JobAudit_{0}] ADD  CONSTRAINT [DF_JobAudit_{0}_ErrorCount]  DEFAULT ((0)) FOR [ErrorCount]
+
+/****** Object:  ForeignKey [FK_DepartmentAudit_{0}_Department_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[DepartmentAudit_{0}]  WITH CHECK ADD  CONSTRAINT [FK_DepartmentAudit_{0}_Department_{0}] FOREIGN KEY([DepartmentId])
+REFERENCES [dbo].[Department_{0}] ([Id])
+
+ALTER TABLE [dbo].[DepartmentAudit_{0}] CHECK CONSTRAINT [FK_DepartmentAudit_{0}_Department_{0}]
+
+/****** Object:  ForeignKey [FK_Item_{0}_Department_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[Item_{0}]  WITH CHECK ADD  CONSTRAINT [FK_Item_{0}_Department_{0}] FOREIGN KEY([DepartmentId])
+REFERENCES [dbo].[Department_{0}] ([Id])
+
+ALTER TABLE [dbo].[Item_{0}] CHECK CONSTRAINT [FK_Item_{0}_Department_{0}]
+
+/****** Object:  ForeignKey [FK_ItemAudit_{0}_Item_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[ItemAudit_{0}]  WITH CHECK ADD  CONSTRAINT [FK_ItemAudit_{0}_Item_{0}] FOREIGN KEY([SKU])
+REFERENCES [dbo].[Item_{0}] ([SKU])
+
+ALTER TABLE [dbo].[ItemAudit_{0}] CHECK CONSTRAINT [FK_ItemAudit_{0}_Item_{0}]
+
+/****** Object:  ForeignKey [FK_Transaction_{0}_Department_{0}]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[Transaction_{0}]  WITH CHECK ADD  CONSTRAINT [FK_Transaction_{0}_Department_{0}] FOREIGN KEY([DepartmentId])
+REFERENCES [dbo].[Department_{0}] ([Id])
+
+ALTER TABLE [dbo].[Transaction_{0}] CHECK CONSTRAINT [FK_Transaction_{0}_Department_{0}]
+
+/****** Object:  ForeignKey [FK_Transaction_{0}_Item_{0}1]    Script Date: 05/11/2012 14:32:58 ******/
+ALTER TABLE [dbo].[Transaction_{0}]  WITH CHECK ADD  CONSTRAINT [FK_Transaction_{0}_Item_{0}1] FOREIGN KEY([SKU])
+REFERENCES [dbo].[Item_{0}] ([SKU])
+
+ALTER TABLE [dbo].[Transaction_{0}] CHECK CONSTRAINT [FK_Transaction_{0}_Item_{0}1]</value>
+  </data>
+</root>
