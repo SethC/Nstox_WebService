@@ -41,6 +41,13 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NSTOX.HistoricalTransaction
 EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "CloudService", "CloudService\CloudService.ccproj", "{553B0F14-3EE5-4572-AC37-15BBBA347DE2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7247CD01-3E6D-490A-8AF4-8CF04A32964C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 8
