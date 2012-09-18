@@ -1,11 +1,27 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{F94284CA-6CEC-4C66-82A9-A6C8AEC8674A}"
 	ProjectSection(SolutionItems) = preProject
 		Libs\FileHelpers.dll = Libs\FileHelpers.dll
 		Libs\FileHelpers.xml = Libs\FileHelpers.xml
 		Libs\ICSharpCode.SharpZipLib.dll = Libs\ICSharpCode.SharpZipLib.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PCMaster", "PCMaster", "{8B6234A5-8B36-4ABA-B7CD-65DCFB153CBD}"
+	ProjectSection(SolutionItems) = preProject
+		Libs\PCMaster\IMExtract.sql = Libs\PCMaster\IMExtract.sql
+		Libs\PCMaster\SaleExt7.exe = Libs\PCMaster\SaleExt7.exe
+		Libs\PCMaster\SLEXTRCT.exe = Libs\PCMaster\SLEXTRCT.exe
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup projects", "Setup projects", "{4682CDF0-1F7F-455C-8807-CE5C22087A53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7247CD01-3E6D-490A-8AF4-8CF04A32964C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSTOX.WebService", "NSTOX.WebService\NSTOX.WebService.csproj", "{65E038D4-207A-4EC8-BAF6-9B14DA719564}"
@@ -15,13 +31,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSTOX.DAL", "NSTOX.DAL\NSTOX.DAL.csproj", "{CA6A28AF-2373-4062-9EC3-A8979562150A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSTOX.BODataProcessor", "NSTOX.BODataProcessor\NSTOX.BODataProcessor.csproj", "{8B975A67-9E35-482E-8370-1081BD08E30B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PCMaster", "PCMaster", "{8B6234A5-8B36-4ABA-B7CD-65DCFB153CBD}"
-	ProjectSection(SolutionItems) = preProject
-		Libs\PCMaster\IMExtract.sql = Libs\PCMaster\IMExtract.sql
-		Libs\PCMaster\SaleExt7.exe = Libs\PCMaster\SaleExt7.exe
-		Libs\PCMaster\SLEXTRCT.exe = Libs\PCMaster\SLEXTRCT.exe
-	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NSTOX.Setup", "NSTOX.Setup\NSTOX.Setup.vdproj", "{B073408D-03FD-4E90-845E-2E9BCCE49C69}"
 EndProject
@@ -35,66 +44,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSTOX.DataPusher", "NSTOX.D
 		{65E038D4-207A-4EC8-BAF6-9B14DA719564} = {65E038D4-207A-4EC8-BAF6-9B14DA719564}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup projects", "Setup projects", "{4682CDF0-1F7F-455C-8807-CE5C22087A53}"
-EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NSTOX.HistoricalTransactions.Setup", "NSTOX.HistoricalTransactions.Setup\NSTOX.HistoricalTransactions.Setup.vdproj", "{AB9BA001-C533-4669-8C0C-A150CAEFC58F}"
 EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "CloudService", "CloudService\CloudService.ccproj", "{553B0F14-3EE5-4572-AC37-15BBBA347DE2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7247CD01-3E6D-490A-8AF4-8CF04A32964C}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
+		SccNumberOfProjects = 2
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://sfvm02:8080/tfs/sfp%20collection
-		SccProjectUniqueName0 = NSTOX.WebService\\NSTOX.WebService.csproj
-		SccProjectName0 = NSTOX.WebService
+		SccTeamFoundationServer = https://ledgerscopetest.tfspreview.com/defaultcollection
+		SccProjectUniqueName0 = NSTOX.Setup\\NSTOX.Setup.vdproj
+		SccProjectTopLevelParentUniqueName0 = NSTOX.sln
 		SccAuxPath0 = http://sfvm02:8080/tfs/sfp%20collection
-		SccLocalPath0 = NSTOX.WebService
+		SccLocalPath0 = NSTOX.Setup
 		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName1 = NSTOX.BOWinService\\NSTOX.BOWinService.csproj
-		SccProjectName1 = NSTOX.BOWinService
+		SccProjectUniqueName1 = NSTOX.HistoricalTransactions.Setup\\NSTOX.HistoricalTransactions.Setup.vdproj
+		SccProjectTopLevelParentUniqueName1 = NSTOX.sln
 		SccAuxPath1 = http://sfvm02:8080/tfs/sfp%20collection
-		SccLocalPath1 = NSTOX.BOWinService
+		SccLocalPath1 = NSTOX.HistoricalTransactions.Setup
 		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName2 = NSTOX.DAL\\NSTOX.DAL.csproj
-		SccProjectName2 = NSTOX.DAL
-		SccAuxPath2 = http://sfvm02:8080/tfs/sfp%20collection
-		SccLocalPath2 = NSTOX.DAL
-		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName3 = NSTOX.BODataProcessor\\NSTOX.BODataProcessor.csproj
-		SccProjectName3 = NSTOX.BODataProcessor
-		SccAuxPath3 = http://sfvm02:8080/tfs/sfp%20collection
-		SccLocalPath3 = NSTOX.BODataProcessor
-		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName4 = NSTOX.HistoricalTransactions\\NSTOX.HistoricalTransactions.csproj
-		SccProjectName4 = NSTOX.HistoricalTransactions
-		SccAuxPath4 = http://sfvm02:8080/tfs/sfp%20collection
-		SccLocalPath4 = NSTOX.HistoricalTransactions
-		SccProvider4 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName5 = NSTOX.DataPusher\\NSTOX.DataPusher.csproj
-		SccProjectName5 = NSTOX.DataPusher
-		SccAuxPath5 = http://sfvm02:8080/tfs/sfp%20collection
-		SccLocalPath5 = NSTOX.DataPusher
-		SccProvider5 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName6 = NSTOX.Setup\\NSTOX.Setup.vdproj
-		SccProjectTopLevelParentUniqueName6 = NSTOX.sln
-		SccProjectName6 = NSTOX.Setup
-		SccAuxPath6 = http://sfvm02:8080/tfs/sfp%20collection
-		SccLocalPath6 = NSTOX.Setup
-		SccProvider6 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName7 = NSTOX.HistoricalTransactions.Setup\\NSTOX.HistoricalTransactions.Setup.vdproj
-		SccProjectTopLevelParentUniqueName7 = NSTOX.sln
-		SccProjectName7 = NSTOX.HistoricalTransactions.Setup
-		SccAuxPath7 = http://sfvm02:8080/tfs/sfp%20collection
-		SccLocalPath7 = NSTOX.HistoricalTransactions.Setup
-		SccProvider7 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = NSTOX.vsmdi
