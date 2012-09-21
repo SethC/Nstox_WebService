@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using NSTOX.DataPusher;
 using NSTOX.DataPusher.Helper;
 using System.Threading;
+using System.IO;
+using NSTOX.DataPusher.BOService;
 
 namespace NSTOX.HistoricalTransactions
 {
@@ -107,6 +109,26 @@ namespace NSTOX.HistoricalTransactions
                 return;
             Pusher.PushHistoricalTransactions(date.StartDate, date.EndDate);
             ChangeWorkingStatus(false);
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.O))
+            {
+                OpenFileDialog odf = new OpenFileDialog()
+                {
+
+                };
+                if (odf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    using (var fs = File.OpenRead(odf.FileName))
+                    {
+                        Pusher.PushBOFileFromZip(BOFileType.Transactions, fs, StartDate.Value.Date);                    
+                    }
+                }
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)

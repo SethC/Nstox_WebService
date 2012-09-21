@@ -4,6 +4,7 @@ using System.Text;
 using NSTOX.DataPusher.Helper;
 using NSTOX.DataPusher.BOService;
 using System.IO;
+using ICSharpCode.SharpZipLib.Core;
 
 namespace NSTOX.DataPusher
 {
@@ -135,6 +136,23 @@ namespace NSTOX.DataPusher
             Proxy.ProcessBOFilesForRetailer(ConfigurationHelper.RetailerId);
             Proxy.Close();
             _proxy = null;
+        }
+
+        public static void PushBOFileFromZip(BOFileType type, Stream stream, DateTime? fileDate, int? retailerID = null, string retailerName = null)
+        {
+            using (var ms = new MemoryStream())
+            {
+                StreamUtils.Copy(stream, ms, new byte[4096]);
+                var result = new BOFile()
+                {
+                    RetailerId = retailerID ?? ConfigurationHelper.RetailerId,
+                    RetailerName = retailerName ?? ConfigurationHelper.RetailerName,
+                    FileType = type,
+                    FileDate = fileDate ?? DateTime.Now,
+                    FileContent = ms.ToArray()
+                };
+                Proxy.PushBOFile(result);
+            }
         }
 
         private static BOFile GetBOFile(BOFileType type, DateTime? fileDate = null, string filePath = null)
