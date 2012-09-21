@@ -52,5 +52,12 @@ namespace NSTOX.BODataProcessor.Helper
             var blobRef = container.GetBlobReference(filePath);
             return blobRef.OpenRead();
         }
+
+        public static bool Exists(string filePath)
+        {
+            var container = getContainer();
+            var blobRef = container.GetBlobReference(filePath);
+            return blobRef.Exists();
+        }
     }
 }

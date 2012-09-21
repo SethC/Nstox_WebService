@@ -27,7 +27,7 @@ namespace NSTOX.BODataProcessor.Processors
             {
                 JobAudit job = jobs.First();
 
-                if (!File.Exists(job.FilePath))
+                if (!BOFilesHelper.Exists(job.FilePath))
                 {
                     job.JobStatus = BOFileStatus.FileNotFound;
                     JobAuditDAL.UpdateJobAudit(job);

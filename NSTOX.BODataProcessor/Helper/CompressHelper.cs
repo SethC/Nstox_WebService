@@ -14,7 +14,7 @@ namespace NSTOX.BODataProcessor.Helper
         {
             List<byte[]> result = new List<byte[]>();
 
-            if (!File.Exists(filePath))
+            if (!BOFilesHelper.Exists(filePath))
                 return result;
 
             using (var fs = BOFilesHelper.GetFileFromStorage(filePath))
