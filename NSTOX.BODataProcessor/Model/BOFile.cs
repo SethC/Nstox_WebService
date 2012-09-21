@@ -5,7 +5,7 @@ using System.Web;
 using System.Runtime.Serialization;
 using NSTOX.BODataProcessor.Model;
 
-namespace NSTOX.BODataProcessor.Model
+namespace NSTOX.WebService.Model
 {
     [DataContract]
     public class BOFile

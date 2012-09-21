@@ -9,7 +9,7 @@ using ICSharpCode.SharpZipLib.Core;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
 using smarx.WazStorageExtensions;
-using NSTOX.BODataProcessor.Model;
+using NSTOX.WebService.Model;
 
 namespace NSTOX.BODataProcessor.Helper
 {
