@@ -1,11 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{F94284CA-6CEC-4C66-82A9-A6C8AEC8674A}"
 	ProjectSection(SolutionItems) = preProject
 		Libs\FileHelpers.dll = Libs\FileHelpers.dll
 		Libs\FileHelpers.xml = Libs\FileHelpers.xml
-		Libs\ICSharpCode.SharpZipLib.dll = Libs\ICSharpCode.SharpZipLib.dll
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PCMaster", "PCMaster", "{8B6234A5-8B36-4ABA-B7CD-65DCFB153CBD}"
