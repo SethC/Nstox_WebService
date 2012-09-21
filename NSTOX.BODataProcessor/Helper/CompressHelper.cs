@@ -10,26 +10,6 @@ namespace NSTOX.BODataProcessor.Helper
 {
     public static class CompressHelper
     {
-        public static List<byte[]> DeCompress(byte[] content)
-        {
-            List<byte[]> result = new List<byte[]>();
-
-            using (ZipInputStream zip = new ZipInputStream(new MemoryStream(content)))
-            {
-                ZipEntry entry = zip.GetNextEntry();
-                while (entry != null)
-                {
-                    using (MemoryStream outputStream = new MemoryStream())
-                    {
-                        StreamUtils.Copy(zip, outputStream, new byte[4096]);
-                        result.Add(outputStream.ToArray());
-                    }
-                    entry = zip.GetNextEntry();
-                }
-            }
-            return result;
-        }
-
         public static List<byte[]> DeCompress(string filePath)
         {
             List<byte[]> result = new List<byte[]>();
@@ -37,17 +17,20 @@ namespace NSTOX.BODataProcessor.Helper
             if (!File.Exists(filePath))
                 return result;
 
-            using (ZipInputStream zip = new ZipInputStream(new FileStream(filePath, FileMode.Open, FileAccess.Read)))
+            using (var fs = BOFilesHelper.GetFileFromStorage(filePath))
             {
-                ZipEntry entry = zip.GetNextEntry();
-                while (entry != null)
+                using (ZipInputStream zip = new ZipInputStream(fs))
                 {
-                    using (MemoryStream outputStream = new MemoryStream())
+                    ZipEntry entry = zip.GetNextEntry();
+                    while (entry != null)
                     {
-                        StreamUtils.Copy(zip, outputStream, new byte[4096]);
-                        result.Add(outputStream.ToArray());
+                        using (MemoryStream outputStream = new MemoryStream())
+                        {
+                            StreamUtils.Copy(zip, outputStream, new byte[4096]);
+                            result.Add(outputStream.ToArray());
+                        }
+                        entry = zip.GetNextEntry();
                     }
-                    entry = zip.GetNextEntry();
                 }
             }
             return result;

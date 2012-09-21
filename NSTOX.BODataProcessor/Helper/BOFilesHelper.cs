@@ -18,32 +18,23 @@ namespace NSTOX.BODataProcessor.Helper
         public static string SaveBOFileToDisk(BOFile file)
         {
             var container = getContainer();
-            
+
             if (file == null || file.FileContent == null)
                 return string.Empty;
 
             string filePath = string.Format("Data\\{0}\\{1}_{2}.zip", file.RetailerId, file.FileDate.ToString("yyyyMMdd"), file.FileType);
 
-            try
+            var blobRef = container.GetBlobReference(filePath);
+            if (blobRef.Exists())
             {
-                var blobRef = container.GetBlobReference(filePath);
-                if (blobRef.Exists())
-                {
-                    string fileWOExtension = Path.GetFileNameWithoutExtension(filePath);
-                    string extension = Path.GetExtension(filePath);
-                    string path = Path.GetDirectoryName(filePath);
-                    filePath = Path.Combine(path, fileWOExtension + DateTime.Now.ToString("HHmmss") + extension);
-                    blobRef = container.GetBlobReference(filePath);
-                }
+                string fileWOExtension = Path.GetFileNameWithoutExtension(filePath);
+                string extension = Path.GetExtension(filePath);
+                filePath = fileWOExtension + DateTime.Now.ToString("HHmmss") + extension;
+                blobRef = container.GetBlobReference(filePath);
+            }
 
-                blobRef.UploadByteArray(file.FileContent);
-                return filePath;
-            }
-            catch (Exception ex)
-            {
-                //Logger.LogException(ex);
-                return string.Empty;
-            }
+            blobRef.UploadByteArray(file.FileContent);
+            return filePath;
         }
 
         private static CloudBlobContainer getContainer()
@@ -57,9 +48,7 @@ namespace NSTOX.BODataProcessor.Helper
         public static Stream GetFileFromStorage(string filePath)
         {
             var container = getContainer();
-
             var blobRef = container.GetBlobReference(filePath);
-
             return blobRef.OpenRead();
         }
     }
