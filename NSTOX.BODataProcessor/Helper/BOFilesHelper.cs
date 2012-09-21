@@ -6,13 +6,12 @@ using System.IO;
 using System.IO.Compression;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
-using NSTOX.WebService.Model;
-using System.Web.Hosting;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
 using smarx.WazStorageExtensions;
+using NSTOX.BODataProcessor.Model;
 
-namespace NSTOX.WebService.Helper
+namespace NSTOX.BODataProcessor.Helper
 {
     public static class BOFilesHelper
     {
@@ -23,7 +22,7 @@ namespace NSTOX.WebService.Helper
             if (file == null || file.FileContent == null)
                 return string.Empty;
 
-            string filePath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, string.Format("Data\\{0}\\{1}_{2}.zip", file.RetailerId, file.FileDate.ToString("yyyyMMdd"), file.FileType));
+            string filePath = string.Format("Data\\{0}\\{1}_{2}.zip", file.RetailerId, file.FileDate.ToString("yyyyMMdd"), file.FileType);
 
             try
             {
@@ -42,7 +41,7 @@ namespace NSTOX.WebService.Helper
             }
             catch (Exception ex)
             {
-                Logger.LogException(ex);
+                //Logger.LogException(ex);
                 return string.Empty;
             }
         }

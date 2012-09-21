@@ -5,7 +5,7 @@ using NSTOX.WebService.Helper;
 using NSTOX.BODataProcessor.Processors;
 using System.Threading.Tasks;
 using System.IO;
-using NSTOX.WebService.Model;
+using NSTOX.BODataProcessor.Model;
 using System.Text;
 using NSTOX.BODataProcessor.DALWrapper;
 using NSTOX.BODataProcessor.Helper;
@@ -17,7 +17,7 @@ namespace NSTOX.WebService
     {
         private int _retailerId = 0;
 
-        public bool PushBOFile(Model.BOFile file)
+        public bool PushBOFile(BOFile file)
         {
             if (file == null)
             {

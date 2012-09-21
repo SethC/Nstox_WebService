@@ -104,15 +104,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\BOFilesHelper.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="IBOService.cs" />
-    <Compile Include="Model\BOFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
