@@ -62,6 +62,9 @@
     <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAzure.Storage.1.7.0.0\lib\net35-full\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
+    <Reference Include="smarx.WazStorageExtensions">
+      <HintPath>..\packages\smarx.WazStorageExtensions.5.2.0.0\lib\net40\smarx.WazStorageExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -83,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BOService.svc" />
+    <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -96,6 +100,9 @@
   <ItemGroup>
     <Compile Include="BOService.svc.cs">
       <DependentUpon>BOService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\BOFilesHelper.cs" />
     <Compile Include="Helper\Logger.cs" />
