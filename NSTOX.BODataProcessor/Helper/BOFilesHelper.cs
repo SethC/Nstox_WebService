@@ -27,9 +27,10 @@ namespace NSTOX.BODataProcessor.Helper
             var blobRef = container.GetBlobReference(filePath);
             if (blobRef.Exists())
             {
+                string path = Path.GetDirectoryName(filePath);
                 string fileWOExtension = Path.GetFileNameWithoutExtension(filePath);
                 string extension = Path.GetExtension(filePath);
-                filePath = fileWOExtension + DateTime.Now.ToString("HHmmss") + extension;
+                filePath = Path.Combine(path, fileWOExtension + DateTime.Now.ToString("HHmmss") + extension);
                 blobRef = container.GetBlobReference(filePath);
             }
 
