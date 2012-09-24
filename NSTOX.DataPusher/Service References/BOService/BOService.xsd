@@ -29,16 +29,4 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ProcessBOFiles">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ProcessBOFilesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ProcessBOFilesResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
 </xs:schema>

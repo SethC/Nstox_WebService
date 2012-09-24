@@ -12,11 +12,8 @@ using NSTOX.BODataProcessor.Helper;
 
 namespace NSTOX.WebService
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Single)]
     public class BOService : IBOService
     {
-        private int _retailerId = 0;
-
         public bool PushBOFile(BOFile file)
         {
             if (file == null)
@@ -36,8 +33,6 @@ namespace NSTOX.WebService
 
             RetailerProcessor retProcessor = new RetailerProcessor();
             retProcessor.EnsureRetailerExists(file.RetailerId, file.RetailerName);
-
-            _retailerId = file.RetailerId;
 
             JobAuditWrapper.AddBOFile(file.RetailerId, file.FileType, filePath);
 
@@ -59,11 +54,5 @@ namespace NSTOX.WebService
 
             return true;
         }
-
-        public bool ProcessBOFiles()
-        {
-            return ProcessBOFilesForRetailer(_retailerId);
-        }
-
     }
 }
