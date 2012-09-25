@@ -96,9 +96,6 @@
     <None Include="Service References\BOService\BOService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BOService\BOService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\BOService\" />
@@ -113,6 +110,9 @@
     <None Include="Service References\BOService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\BOService\NSTOX.DataPusher.BOService.AzureUploadFile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\BOService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

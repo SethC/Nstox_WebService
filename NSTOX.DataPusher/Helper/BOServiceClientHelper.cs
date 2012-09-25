@@ -9,7 +9,7 @@ using Microsoft.WindowsAzure;
 
 namespace NSTOX.DataPusher.Helper
 {
-    public static class BOServiceClientHelper
+    static class BOServiceClientHelper
     {
         public static bool PushBOFile(this BOServiceClient client, LocalFile lf)
         {
@@ -23,7 +23,7 @@ namespace NSTOX.DataPusher.Helper
 
             blob.UploadByteArray(lf.FileContent);
 
-            return true;
+            return client.Uploaded(retVal.Name);
         }
     }
 }
