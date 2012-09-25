@@ -15,12 +15,27 @@ namespace NSTOX.BODataProcessor.DALWrapper
         {
             try
             {
-                JobAudit job = new JobAudit { RetailerId = retailerId, FileType = (InputFileType)fileType, FilePath = filePath, JobStatus = BOFileStatus.New };
+                JobAudit job = new JobAudit { RetailerId = retailerId, FileType = (InputFileType)fileType, FilePath = filePath, JobStatus = BOFileStatus.NotUploaded };
                 JobAuditDAL.InsertJobAudit(job);
             }
             catch (Exception ex)
             {
                 Logger.LogException(ex);
+            }
+        }
+
+        public static bool UploadedBOFile(string filePath)
+        {
+            var job = JobAuditDAL.GetJobAuditByFilePath(filePath);
+            if (job != null)
+            {
+                job.JobStatus = BOFileStatus.New;
+                JobAuditDAL.UpdateJobAudit(job);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

@@ -22,6 +22,7 @@ namespace NSTOX.DAL.Model
 
     public enum BOFileStatus
     {
+        NotUploaded = 0,
         New = 1,
         Processing = 2,
         FileNotFound = 3,

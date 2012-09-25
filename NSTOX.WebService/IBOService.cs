@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using NSTOX.WebService.Model;
+using NSTOX.BODataProcessor.Model;
 
 namespace NSTOX.WebService
 {
@@ -13,9 +13,12 @@ namespace NSTOX.WebService
     public interface IBOService
     {
         [OperationContract]
-        bool PushBOFile(BOFile file);
+        AzureUploadFile PushBOFile(BOFile file);
 
         [OperationContract]
         bool ProcessBOFilesForRetailer(int retailerId);
+
+        [OperationContract]
+        bool Uploaded(string filePath);
     }
 }

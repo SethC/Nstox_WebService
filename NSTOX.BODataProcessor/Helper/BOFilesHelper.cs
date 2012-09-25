@@ -9,17 +9,17 @@ using ICSharpCode.SharpZipLib.Core;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
 using smarx.WazStorageExtensions;
-using NSTOX.WebService.Model;
+using NSTOX.BODataProcessor.Model;
 
 namespace NSTOX.BODataProcessor.Helper
 {
     public static class BOFilesHelper
     {
-        public static string SaveBOFileToDisk(BOFile file)
+        public static string GetFileName(BOFile file)
         {
             var container = getContainer();
 
-            if (file == null || file.FileContent == null)
+            if (file == null)
                 return string.Empty;
 
             string filePath = string.Format("Data\\{0}\\{1}_{2}.zip", file.RetailerId, file.FileDate.ToString("yyyyMMdd"), file.FileType);
@@ -34,8 +34,28 @@ namespace NSTOX.BODataProcessor.Helper
                 blobRef = container.GetBlobReference(filePath);
             }
 
-            blobRef.UploadByteArray(file.FileContent);
             return filePath;
+        }
+
+        public static AzureUploadFile GetSignature(string path)
+        {
+            var container = getContainer();
+            var blob = container.GetBlobReference(path);
+
+            var signature = blob.GetSharedAccessSignature(new SharedAccessPolicy()
+            {
+                SharedAccessStartTime = DateTime.UtcNow,
+                SharedAccessExpiryTime = DateTime.UtcNow.AddHours(1),
+                Permissions = SharedAccessPermissions.Write,
+            });
+
+            return new AzureUploadFile()
+            {
+                AccountName = container.ServiceClient.BaseUri,
+                Container = container.Name,
+                Name = path,
+                Signature = signature
+            };
         }
 
         private static CloudBlobContainer getContainer()

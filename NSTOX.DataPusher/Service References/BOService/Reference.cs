@@ -15,7 +15,7 @@ namespace NSTOX.DataPusher.BOService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BOFile", Namespace="http://schemas.datacontract.org/2004/07/NSTOX.WebService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BOFile", Namespace="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model")]
     [System.SerializableAttribute()]
     public partial class BOFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -23,10 +23,10 @@ namespace NSTOX.DataPusher.BOService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] FileContentField;
+        private System.DateTime FileDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime FileDateField;
+        private int FileLengthField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private NSTOX.DataPusher.BOService.BOFileType FileTypeField;
@@ -48,19 +48,6 @@ namespace NSTOX.DataPusher.BOService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] FileContent {
-            get {
-                return this.FileContentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileContentField, value) != true)) {
-                    this.FileContentField = value;
-                    this.RaisePropertyChanged("FileContent");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime FileDate {
             get {
                 return this.FileDateField;
@@ -69,6 +56,19 @@ namespace NSTOX.DataPusher.BOService {
                 if ((this.FileDateField.Equals(value) != true)) {
                     this.FileDateField = value;
                     this.RaisePropertyChanged("FileDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FileLength {
+            get {
+                return this.FileLengthField;
+            }
+            set {
+                if ((this.FileLengthField.Equals(value) != true)) {
+                    this.FileLengthField = value;
+                    this.RaisePropertyChanged("FileLength");
                 }
             }
         }
@@ -136,15 +136,111 @@ namespace NSTOX.DataPusher.BOService {
         Transactions = 3,
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AzureUploadFile", Namespace="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model")]
+    [System.SerializableAttribute()]
+    public partial class AzureUploadFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Uri AccountNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContainerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SignatureField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Uri AccountName {
+            get {
+                return this.AccountNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountNameField, value) != true)) {
+                    this.AccountNameField = value;
+                    this.RaisePropertyChanged("AccountName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Container {
+            get {
+                return this.ContainerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContainerField, value) != true)) {
+                    this.ContainerField = value;
+                    this.RaisePropertyChanged("Container");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Signature {
+            get {
+                return this.SignatureField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SignatureField, value) != true)) {
+                    this.SignatureField = value;
+                    this.RaisePropertyChanged("Signature");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BOService.IBOService")]
     public interface IBOService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBOService/PushBOFile", ReplyAction="http://tempuri.org/IBOService/PushBOFileResponse")]
-        bool PushBOFile(NSTOX.DataPusher.BOService.BOFile file);
+        NSTOX.DataPusher.BOService.AzureUploadFile PushBOFile(NSTOX.DataPusher.BOService.BOFile file);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBOService/ProcessBOFilesForRetailer", ReplyAction="http://tempuri.org/IBOService/ProcessBOFilesForRetailerResponse")]
         bool ProcessBOFilesForRetailer(int retailerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBOService/Uploaded", ReplyAction="http://tempuri.org/IBOService/UploadedResponse")]
+        bool Uploaded(string filePath);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -174,12 +270,16 @@ namespace NSTOX.DataPusher.BOService {
                 base(binding, remoteAddress) {
         }
         
-        public bool PushBOFile(NSTOX.DataPusher.BOService.BOFile file) {
+        public NSTOX.DataPusher.BOService.AzureUploadFile PushBOFile(NSTOX.DataPusher.BOService.BOFile file) {
             return base.Channel.PushBOFile(file);
         }
         
         public bool ProcessBOFilesForRetailer(int retailerId) {
             return base.Channel.ProcessBOFilesForRetailer(retailerId);
+        }
+        
+        public bool Uploaded(string filePath) {
+            return base.Channel.Uploaded(filePath);
         }
     }
 }

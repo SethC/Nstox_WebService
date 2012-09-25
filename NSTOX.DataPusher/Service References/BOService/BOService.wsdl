@@ -4,8 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:18491/BOService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:18491/BOService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:18491/BOService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/NSTOX.WebService.Model" />
-      <xsd:import schemaLocation="http://localhost:18491/BOService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model" />
+      <xsd:import schemaLocation="http://localhost:18491/BOService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IBOService_PushBOFile_InputMessage">
@@ -20,6 +19,12 @@
   <wsdl:message name="IBOService_ProcessBOFilesForRetailer_OutputMessage">
     <wsdl:part name="parameters" element="tns:ProcessBOFilesForRetailerResponse" />
   </wsdl:message>
+  <wsdl:message name="IBOService_Uploaded_InputMessage">
+    <wsdl:part name="parameters" element="tns:Uploaded" />
+  </wsdl:message>
+  <wsdl:message name="IBOService_Uploaded_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadedResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBOService">
     <wsdl:operation name="PushBOFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IBOService/PushBOFile" message="tns:IBOService_PushBOFile_InputMessage" />
@@ -28,6 +33,10 @@
     <wsdl:operation name="ProcessBOFilesForRetailer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBOService/ProcessBOFilesForRetailer" message="tns:IBOService_ProcessBOFilesForRetailer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBOService/ProcessBOFilesForRetailerResponse" message="tns:IBOService_ProcessBOFilesForRetailer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Uploaded">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBOService/Uploaded" message="tns:IBOService_Uploaded_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBOService/UploadedResponse" message="tns:IBOService_Uploaded_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBOService" type="tns:IBOService">
@@ -43,6 +52,15 @@
     </wsdl:operation>
     <wsdl:operation name="ProcessBOFilesForRetailer">
       <soap:operation soapAction="http://tempuri.org/IBOService/ProcessBOFilesForRetailer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Uploaded">
+      <soap:operation soapAction="http://tempuri.org/IBOService/Uploaded" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -34,6 +34,19 @@ namespace NSTOX.DAL.DAL
             }
         }
 
+        public static JobAudit GetJobAuditByFilePath(string filePath)
+        {
+            try
+            {
+                return GetFromDBAndMapToObjectsList<JobAudit>("usp_Get_JobAuditByFilePath", new { FilePath = filePath }).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException(ex);
+                return null;
+            }
+        }
+
         public static void UpdateJobAudit(JobAudit job)
         {
             try

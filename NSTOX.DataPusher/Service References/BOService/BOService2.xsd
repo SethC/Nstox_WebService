@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/NSTOX.WebService.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/NSTOX.WebService.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:18491/BOService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model" />
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:18491/BOService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="BOFile">
     <xs:sequence>
-      <xs:element minOccurs="0" name="FileContent" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="FileDate" type="xs:dateTime" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model" minOccurs="0" name="FileType" type="q1:BOFileType" />
+      <xs:element minOccurs="0" name="FileLength" type="xs:int" />
+      <xs:element minOccurs="0" name="FileType" type="tns:BOFileType" />
       <xs:element minOccurs="0" name="RetailerId" type="xs:int" />
       <xs:element minOccurs="0" name="RetailerName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BOFile" nillable="true" type="tns:BOFile" />
+  <xs:simpleType name="BOFileType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Items">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Departments">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Transactions">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BOFileType" nillable="true" type="tns:BOFileType" />
+  <xs:complexType name="AzureUploadFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountName" nillable="true" type="xs:anyURI" />
+      <xs:element minOccurs="0" name="Container" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Signature" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AzureUploadFile" nillable="true" type="tns:AzureUploadFile" />
 </xs:schema>

@@ -73,6 +73,7 @@
     <Compile Include="DALWrapper\JobAuditWrapper.cs" />
     <Compile Include="Helper\BOFilesHelper.cs" />
     <Compile Include="Helper\CompressHelper.cs" />
+    <Compile Include="Model\AzureUploadFile.cs" />
     <Compile Include="Model\BOFile.cs" />
     <Compile Include="Processors\DepartmentProcessor.cs" />
     <Compile Include="Extensions\DALExtensions.cs" />

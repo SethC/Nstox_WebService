@@ -5,6 +5,7 @@ using NSTOX.DataPusher.Helper;
 using NSTOX.DataPusher.BOService;
 using System.IO;
 using ICSharpCode.SharpZipLib.Core;
+using NSTOX.DataPusher.Model;
 
 namespace NSTOX.DataPusher
 {
@@ -38,15 +39,15 @@ namespace NSTOX.DataPusher
                 Logger.LogInfo("Extracting transactions from Back Office");
                 string transactionPath = ExtractUtilityHelper.ExtractTransactionXML();
 
-                BOFile departments = GetBOFile(BOFileType.Departments);
+                var departments = GetBOFile(BOFileType.Departments);
 
                 if (departments != null && departments.FileContent != null)
                 {
                     Logger.LogInfo("Pushing departments file to the web service!");
-                    Proxy.PushBOFile(departments);
+                    var result = Proxy.PushBOFile(departments);
                 }
 
-                BOFile items = GetBOFile(BOFileType.Items);
+                var items = GetBOFile(BOFileType.Items);
 
                 if (items != null && items.FileContent != null)
                 {
@@ -54,7 +55,7 @@ namespace NSTOX.DataPusher
                     Proxy.PushBOFile(items);
                 }
 
-                BOFile transactions = GetBOFile(BOFileType.Transactions, ConfigurationHelper.TransactionDate, transactionPath);
+                var transactions = GetBOFile(BOFileType.Transactions, ConfigurationHelper.TransactionDate, transactionPath);
 
                 if (transactions != null)
                 {
@@ -115,7 +116,7 @@ namespace NSTOX.DataPusher
 
                 count++;
 
-                BOFile transactions = GetBOFile(BOFileType.Transactions, date, transPath);
+                var transactions = GetBOFile(BOFileType.Transactions, date, transPath);
                 if (transactions != null)
                 {
                     Logger.LogInfo(string.Format("PUSHING: Transaction for {0}", date.ToString(Constants.DateFormat)));
@@ -143,33 +144,40 @@ namespace NSTOX.DataPusher
             using (var ms = new MemoryStream())
             {
                 StreamUtils.Copy(stream, ms, new byte[4096]);
-                var result = new BOFile()
+                var result = new LocalFile()
                 {
-                    RetailerId = retailerID ?? ConfigurationHelper.RetailerId,
-                    RetailerName = retailerName ?? ConfigurationHelper.RetailerName,
-                    FileType = type,
-                    FileDate = fileDate ?? DateTime.Now,
+                    BOFile = new BOFile()
+                    {
+                        RetailerId = retailerID ?? ConfigurationHelper.RetailerId,
+                        RetailerName = retailerName ?? ConfigurationHelper.RetailerName,
+                        FileType = type,
+                        FileDate = fileDate ?? DateTime.Now,
+                    },
                     FileContent = ms.ToArray()
                 };
                 Proxy.PushBOFile(result);
             }
         }
 
-        private static BOFile GetBOFile(BOFileType type, DateTime? fileDate = null, string filePath = null)
+        private static LocalFile GetBOFile(BOFileType type, DateTime? fileDate = null, string filePath = null)
         {
             List<string> filesPath = BOFilesHelper.GetFilePathByType(type, filePath);
 
             if (filesPath != null && filesPath.Count > 0)
             {
+                LocalFile lf = new LocalFile();
+
                 BOFile result = new BOFile();
 
                 result.RetailerId = ConfigurationHelper.RetailerId;
                 result.RetailerName = ConfigurationHelper.RetailerName;
                 result.FileType = type;
                 result.FileDate = fileDate ?? DateTime.Now;
-                result.FileContent = BOFilesHelper.Compress(filesPath);
+                lf.BOFile = result;
 
-                return result;
+                lf.FileContent = BOFilesHelper.Compress(filesPath);
+
+                return lf;
             }
             else
             {

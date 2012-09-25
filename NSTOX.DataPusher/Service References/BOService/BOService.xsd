@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:18491/BOService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/NSTOX.WebService.Model" />
+  <xs:import schemaLocation="http://localhost:18491/BOService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model" />
   <xs:element name="PushBOFile">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/NSTOX.WebService.Model" minOccurs="0" name="file" nillable="true" type="q1:BOFile" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model" minOccurs="0" name="file" nillable="true" type="q1:BOFile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="PushBOFileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="PushBOFileResult" type="xs:boolean" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/NSTOX.BODataProcessor.Model" minOccurs="0" name="PushBOFileResult" nillable="true" type="q2:AzureUploadFile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -26,6 +26,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="ProcessBOFilesForRetailerResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Uploaded">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="filePath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UploadedResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
