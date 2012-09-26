@@ -15,26 +15,38 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_1F29FF8A50487D9AD82A6FC13CAE560F"
+        "MsmKey" = "8:_194BD2D74AEED7C0760C5683063923B4"
         "OwnerKey" = "8:_7A2CB8D30DFA447C89EA4653EB3D3413"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_1F29FF8A50487D9AD82A6FC13CAE560F"
-        "OwnerKey" = "8:_550D574F964FB7EA0D0F768F9E2C9830"
+        "MsmKey" = "8:_5E7A01301FE31C368BBDFACE344F45E6"
+        "OwnerKey" = "8:_7A2CB8D30DFA447C89EA4653EB3D3413"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_550D574F964FB7EA0D0F768F9E2C9830"
-        "OwnerKey" = "8:_7A2CB8D30DFA447C89EA4653EB3D3413"
+        "MsmKey" = "8:_5E7A01301FE31C368BBDFACE344F45E6"
+        "OwnerKey" = "8:_194BD2D74AEED7C0760C5683063923B4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_7A2CB8D30DFA447C89EA4653EB3D3413"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8B6D10725A6DD0D773D12DBC85A1CD3F"
+        "OwnerKey" = "8:_7A2CB8D30DFA447C89EA4653EB3D3413"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8B6D10725A6DD0D773D12DBC85A1CD3F"
+        "OwnerKey" = "8:_194BD2D74AEED7C0760C5683063923B4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -46,19 +58,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1F29FF8A50487D9AD82A6FC13CAE560F"
+        "OwnerKey" = "8:_194BD2D74AEED7C0760C5683063923B4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8B6D10725A6DD0D773D12DBC85A1CD3F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5E7A01301FE31C368BBDFACE344F45E6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_7A2CB8D30DFA447C89EA4653EB3D3413"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_550D574F964FB7EA0D0F768F9E2C9830"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -79,6 +97,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    {
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -132,7 +171,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v3.0"
+                "FrameworkVersion" = "8:.NETFramework,Version=v3.5"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=70848"
                 }
@@ -140,14 +179,45 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1F29FF8A50487D9AD82A6FC13CAE560F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_194BD2D74AEED7C0760C5683063923B4"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:NSTOX.DataPusher, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d7fed213adc1f246, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_194BD2D74AEED7C0760C5683063923B4"
+                    {
+                    "Name" = "8:NSTOX.DataPusher.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:NSTOX.DataPusher.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_5648D2194A704F46A9B47AEAE4E79BDA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5E7A01301FE31C368BBDFACE344F45E6"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_1F29FF8A50487D9AD82A6FC13CAE560F"
+                    "_5E7A01301FE31C368BBDFACE344F45E6"
                     {
                     "Name" = "8:ICSharpCode.SharpZipLib.dll"
                     "Attributes" = "3:512"
@@ -171,20 +241,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_550D574F964FB7EA0D0F768F9E2C9830"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8B6D10725A6DD0D773D12DBC85A1CD3F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NSTOX.DataPusher, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d7fed213adc1f246, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_550D574F964FB7EA0D0F768F9E2C9830"
+                    "_8B6D10725A6DD0D773D12DBC85A1CD3F"
                     {
-                    "Name" = "8:NSTOX.DataPusher.dll"
+                    "Name" = "8:Microsoft.WindowsAzure.StorageClient.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:NSTOX.DataPusher.dll"
+            "SourcePath" = "8:Microsoft.WindowsAzure.StorageClient.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5648D2194A704F46A9B47AEAE4E79BDA"
@@ -279,7 +349,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:NSTOX.HistoricalTransactions.Setup"
         "ProductCode" = "8:{641CAAA2-6D4F-486B-BFA3-888D47FC1DC6}"
-        "PackageCode" = "8:{F478A949-D115-411B-A408-0E435E1FB240}"
+        "PackageCode" = "8:{46597CD7-318B-4E05-8C59-67E7B5A4D832}"
         "UpgradeCode" = "8:{BED3C53A-47A4-476C-84F1-0C49DBC25CF9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -814,7 +884,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7A2CB8D30DFA447C89EA4653EB3D3413"
             {
-            "SourcePath" = "8:..\\NSTOX.HistoricalTransactions\\obj\\x86\\Release\\NSTOX.HistoricalTransactions.exe"
+            "SourcePath" = "8:..\\NSTOX.HistoricalTransactions\\obj\\x86\\Debug\\NSTOX.HistoricalTransactions.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5648D2194A704F46A9B47AEAE4E79BDA"

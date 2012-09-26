@@ -23,7 +23,7 @@ namespace NSTOX.DataPusher.Helper
 
             blob.UploadByteArray(lf.FileContent);
 
-            return client.Uploaded(retVal.Name);
+            return client.Uploaded(lf.BOFile.RetailerId, retVal.Name);
         }
     }
 }
