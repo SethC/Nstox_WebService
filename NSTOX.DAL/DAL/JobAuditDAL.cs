@@ -34,11 +34,16 @@ namespace NSTOX.DAL.DAL
             }
         }
 
-        public static JobAudit GetJobAuditByFilePath(string filePath)
+        public static JobAudit GetJobAuditByFilePath(int retailerId, string filePath)
         {
             try
             {
-                return GetFromDBAndMapToObjectsList<JobAudit>("usp_Get_JobAuditByFilePath", new { FilePath = filePath }).FirstOrDefault();
+                return GetFromDBAndMapToObjectsList<JobAudit>("usp_Get_JobAuditByFilePath", 
+                    new 
+                    { 
+                        RetailerId = retailerId, 
+                        FilePath = filePath 
+                    }).FirstOrDefault();
             }
             catch (Exception ex)
             {

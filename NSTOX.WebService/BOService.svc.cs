@@ -43,9 +43,9 @@ namespace NSTOX.WebService
             return signature;
         }
 
-        public bool Uploaded(string filePath)
+        public bool Uploaded(int retailerId, string filePath)
         {
-            return JobAuditWrapper.UploadedBOFile(filePath);
+            return JobAuditWrapper.UploadedBOFile(retailerId, filePath);
         }
 
         public bool ProcessBOFilesForRetailer(int retailerId)

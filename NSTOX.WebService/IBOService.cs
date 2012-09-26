@@ -19,6 +19,6 @@ namespace NSTOX.WebService
         bool ProcessBOFilesForRetailer(int retailerId);
 
         [OperationContract]
-        bool Uploaded(string filePath);
+        bool Uploaded(int retailerId, string filePath);
     }
 }

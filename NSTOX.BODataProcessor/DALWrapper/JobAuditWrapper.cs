@@ -24,9 +24,9 @@ namespace NSTOX.BODataProcessor.DALWrapper
             }
         }
 
-        public static bool UploadedBOFile(string filePath)
+        public static bool UploadedBOFile(int retailerId, string filePath)
         {
-            var job = JobAuditDAL.GetJobAuditByFilePath(filePath);
+            var job = JobAuditDAL.GetJobAuditByFilePath(retailerId, filePath);
             if (job != null)
             {
                 job.JobStatus = BOFileStatus.New;

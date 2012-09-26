@@ -155,6 +155,7 @@ namespace NSTOX.DataPusher
                     },
                     FileContent = ms.ToArray()
                 };
+                result.BOFile.FileLength = result.FileContent.Length;
                 Proxy.PushBOFile(result);
             }
         }
@@ -176,6 +177,7 @@ namespace NSTOX.DataPusher
                 lf.BOFile = result;
 
                 lf.FileContent = BOFilesHelper.Compress(filesPath);
+                result.FileLength = lf.FileContent.Length;
 
                 return lf;
             }
