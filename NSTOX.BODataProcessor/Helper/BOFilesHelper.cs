@@ -44,8 +44,8 @@ namespace NSTOX.BODataProcessor.Helper
 
             var signature = blob.GetSharedAccessSignature(new SharedAccessPolicy()
             {
-                SharedAccessStartTime = DateTime.UtcNow,
-                SharedAccessExpiryTime = DateTime.UtcNow.AddHours(1),
+                SharedAccessStartTime = DateTime.UtcNow.AddMinutes(-1),
+                SharedAccessExpiryTime = DateTime.UtcNow.AddMinutes(59),
                 Permissions = SharedAccessPermissions.Write,
             });
 
