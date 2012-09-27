@@ -37,14 +37,13 @@ namespace NSTOX.WebService
 
             JobAuditWrapper.AddBOFile(file.RetailerId, file.FileType, filePath);
 
-            file = null;
-            retProcessor = null;
-
+            Logger.LogInfo("Returning " + signature.ToString());
             return signature;
         }
 
         public bool Uploaded(int retailerId, string filePath)
         {
+            Logger.LogInfo("Uploaded " + retailerId + " - " + filePath);
             return JobAuditWrapper.UploadedBOFile(retailerId, filePath);
         }
 
@@ -52,6 +51,8 @@ namespace NSTOX.WebService
         {
             if (retailerId <= 0)
                 return false;
+
+            Logger.LogInfo("Processing for " + retailerId);
 
             Task task = new TaskFactory(TaskCreationOptions.LongRunning, TaskContinuationOptions.LongRunning)
                 .StartNew(() =>

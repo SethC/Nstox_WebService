@@ -20,5 +20,10 @@ namespace NSTOX.BODataProcessor.Model
 
         [DataMember]
         public string Signature { get; set; }
+
+        public override string ToString()
+        {
+            return string.Join(", ", AccountName.ToString(), Container, Name, Signature);
+        }
     }
 }
