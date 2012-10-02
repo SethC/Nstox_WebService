@@ -17,6 +17,8 @@ namespace NSTOX.DataPusher.Helper
 
             CloudBlobClient blobStorage = new CloudBlobClient(retVal.AccountName,
                                 new StorageCredentialsSharedAccessSignature(retVal.Signature));
+            
+            blobStorage.Timeout = TimeSpan.FromHours(1);
 
             var container = blobStorage.GetContainerReference(retVal.Container);
             var blob = container.GetBlobReference(retVal.Name);
