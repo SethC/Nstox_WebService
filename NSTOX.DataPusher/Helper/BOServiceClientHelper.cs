@@ -23,9 +23,20 @@ namespace NSTOX.DataPusher.Helper
             var container = blobStorage.GetContainerReference(retVal.Container);
             var blob = container.GetBlobReference(retVal.Name);
 
-            blob.UploadByteArray(lf.FileContent);
+            blob.UploadByteArray(lf.FileContent, defaultRequestOptions);
 
             return client.Uploaded(lf.BOFile.RetailerId, retVal.Name);
+        }
+
+        static BlobRequestOptions defaultRequestOptions
+        {
+            get
+            {
+                return new BlobRequestOptions()
+                {
+                    Timeout = TimeSpan.FromHours(1),
+                };
+            }
         }
     }
 }
