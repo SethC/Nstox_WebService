@@ -42,7 +42,9 @@ namespace NSTOX.WebService
 
         protected void Application_Error(object sender, EventArgs e)
         {
-
+            var ex = Server.GetLastError();
+            Trace.WriteLine(ex.ToString());
+            Server.ClearError();
         }
 
         protected void Session_End(object sender, EventArgs e)
