@@ -23,7 +23,6 @@ namespace NSTOX.WebService
             });
             System.Diagnostics.Trace.Listeners.Add(CloudTraceListener.StorageTraceListener.Instance);
             Trace.WriteLine("Initialised");
-            Trace.Flush();
         }
 
         protected void Session_Start(object sender, EventArgs e)

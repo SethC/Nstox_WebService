@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using NSTOX.WebService.Helper;
 using NSTOX.BODataProcessor.Processors;
 using System.Threading.Tasks;
 using System.IO;
@@ -9,6 +8,7 @@ using System.Text;
 using NSTOX.BODataProcessor.DALWrapper;
 using NSTOX.BODataProcessor.Helper;
 using NSTOX.BODataProcessor.Model;
+using System.Diagnostics;
 
 namespace NSTOX.WebService
 {
@@ -18,11 +18,11 @@ namespace NSTOX.WebService
         {
             if (file == null)
             {
-                Logger.LogInfo("PushBOFile(null)");
+                Trace.WriteLine("PushBOFile(null)");
                 return null;
             }
 
-            Logger.LogInfo(string.Format("PushBOFile (RetailerId = {0}, RetailerName = {1}, FileType = {2}, FileDate = {3}, FileContentLength = {4}",
+            Trace.WriteLine(string.Format("PushBOFile (RetailerId = {0}, RetailerName = {1}, FileType = {2}, FileDate = {3}, FileContentLength = {4}",
                 file.RetailerId,
                 file.RetailerName,
                 file.FileType,
@@ -37,13 +37,13 @@ namespace NSTOX.WebService
 
             JobAuditWrapper.AddBOFile(file.RetailerId, file.FileType, filePath);
 
-            Logger.LogInfo("Returning " + signature.ToString());
+            Trace.WriteLine("Returning " + signature.ToString());
             return signature;
         }
 
         public bool Uploaded(int retailerId, string filePath)
         {
-            Logger.LogInfo("Uploaded " + retailerId + " - " + filePath);
+            Trace.WriteLine("Uploaded " + retailerId + " - " + filePath);
             return JobAuditWrapper.UploadedBOFile(retailerId, filePath);
         }
 
@@ -52,7 +52,7 @@ namespace NSTOX.WebService
             if (retailerId <= 0)
                 return false;
 
-            Logger.LogInfo("Processing for " + retailerId);
+            Trace.WriteLine("Processing for " + retailerId);
 
             Task task = new TaskFactory(TaskCreationOptions.LongRunning, TaskContinuationOptions.LongRunning)
                 .StartNew(() =>

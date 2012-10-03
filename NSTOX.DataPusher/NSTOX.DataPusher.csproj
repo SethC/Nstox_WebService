@@ -83,7 +83,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="key.snk" />
     <None Include="packages.config" />
     <None Include="Service References\BOService\BOService.wsdl" />
