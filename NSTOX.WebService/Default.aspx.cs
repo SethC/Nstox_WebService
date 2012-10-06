@@ -1,4 +1,3 @@
-using NSTOX.WebService.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +17,6 @@ namespace NSTOX.WebService
         protected void Error_Click(object sender, EventArgs e)
         {
             throw new ApplicationException("Test Error");
-        }
-
-        protected void Log_Click(object sender, EventArgs e)
-        {
-            Logger.LogInfo("Test Message");
         }
 
         protected void Process_Click(object sender, EventArgs e)
