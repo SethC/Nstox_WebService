@@ -11,7 +11,7 @@ namespace NSTOX.BODataProcessor.Extensions
                 return text;
             }
 
-            return text.TrimEnd(",".ToCharArray()).Trim();
+            return text.Trim(",".ToCharArray()).Trim();
         }
 
         public static string RemoveTrailCommaAndSanitize(this string text)
