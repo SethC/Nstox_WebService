@@ -96,7 +96,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BOService.svc" />
-    <Content Include="Default.aspx" />
+    <Compile Include="Debug.aspx.cs">
+      <DependentUpon>Debug.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Debug.aspx.designer.cs">
+      <DependentUpon>Debug.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Debug.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -111,13 +118,6 @@
   <ItemGroup>
     <Compile Include="BOService.svc.cs">
       <DependentUpon>BOService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

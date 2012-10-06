@@ -32,7 +32,7 @@ namespace NSTOX.WebService
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            Trace.WriteLine(Request.Url.ToString());
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
