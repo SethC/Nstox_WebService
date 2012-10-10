@@ -138,6 +138,10 @@
       <Project>{8B975A67-9E35-482E-8370-1081BD08E30B}</Project>
       <Name>NSTOX.BODataProcessor</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NSTOX.DAL\NSTOX.DAL.csproj">
+      <Project>{CA6A28AF-2373-4062-9EC3-A8979562150A}</Project>
+      <Name>NSTOX.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

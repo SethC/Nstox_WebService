@@ -9,6 +9,7 @@ using NSTOX.BODataProcessor.DALWrapper;
 using NSTOX.BODataProcessor.Helper;
 using NSTOX.BODataProcessor.Model;
 using System.Diagnostics;
+using NSTOX.DAL.DAL;
 
 namespace NSTOX.WebService
 {
@@ -61,6 +62,11 @@ namespace NSTOX.WebService
                     });
 
             return true;
+        }
+
+        public string CheckConnection()
+        {
+            return new BaseDAL().GetVersion();
         }
     }
 }

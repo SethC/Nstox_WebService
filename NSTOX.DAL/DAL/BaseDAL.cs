@@ -229,6 +229,27 @@ namespace NSTOX.DAL.DAL
             }
         }
 
+        protected static object ExecuteScalar(string query)
+        {
+            try
+            {
+                using (SqlCommand command = new SqlCommand(query, Connection))
+                {
+                    return command.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException(ex);
+                throw;
+            }
+        }
+
+        public string GetVersion()
+        {
+            return ExecuteScalar("select @@version").ToString();
+        }
+
         /// <summary>
         /// Execute a stored procedure and returns a DataReader instance
         /// </summary>

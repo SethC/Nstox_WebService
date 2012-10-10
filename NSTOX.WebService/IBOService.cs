@@ -20,5 +20,8 @@ namespace NSTOX.WebService
 
         [OperationContract]
         bool Uploaded(int retailerId, string filePath);
+
+        [OperationContract]
+        string CheckConnection();
     }
 }
