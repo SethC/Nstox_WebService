@@ -18,22 +18,19 @@ namespace NSTOX.DAL.DAL
     {
         public static string ConnectionString { get { return ConfigurationManager.ConnectionStrings["NSTOXConnectionString"].ConnectionString; } }
 
-        protected static IDbConnection Connection
+        protected static IDbConnection CreateConnection()
         {
-            get
-            {
-                IDbConnection connection = null;
-                // Get an instance of the RetryManager class.
-                //var retryManager = EnterpriseLibraryContainer.Current.GetInstance<RetryManager>();
+            IDbConnection connection = null;
+            // Get an instance of the RetryManager class.
+            //var retryManager = EnterpriseLibraryContainer.Current.GetInstance<RetryManager>();
 
-                // Create a retry policy that uses a default retry strategy from the 
-                // configuration.
-                //var retryPolicy = retryManager.GetDefaultSqlConnectionRetryPolicy();
-                //connection = new ReliableSqlConnection(ConnectionString, retryPolicy, retryPolicy);
-                connection = new SqlConnection(ConnectionString);
-                connection.Open();
-                return connection;
-            }
+            // Create a retry policy that uses a default retry strategy from the 
+            // configuration.
+            //var retryPolicy = retryManager.GetDefaultSqlConnectionRetryPolicy();
+            //connection = new ReliableSqlConnection(ConnectionString, retryPolicy, retryPolicy);
+            connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            return connection;
         }
 
         /// <summary>
@@ -179,10 +176,13 @@ namespace NSTOX.DAL.DAL
         {
             try
             {
-                using (IDbCommand command = Connection.CreateCommand())
+                using (var connection = CreateConnection())
                 {
-                    command.CommandText = query;
-                    command.ExecuteNonQuery();
+                    using (IDbCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = query;
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
             catch (Exception ex)
@@ -196,10 +196,13 @@ namespace NSTOX.DAL.DAL
         {
             try
             {
-                using (IDbCommand command = Connection.CreateCommand())
+                using (var connection = CreateConnection())
                 {
-                    command.CommandText = query;
-                    return command.ExecuteScalar();
+                    using (IDbCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = query;
+                        return command.ExecuteScalar();
+                    }
                 }
             }
             catch (Exception ex)
@@ -225,17 +228,19 @@ namespace NSTOX.DAL.DAL
         {
             try
             {
-                using (IDbCommand command = Connection.CreateCommand())
+                using (var connection = CreateConnection())
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = storedProcedure;
+                    using (IDbCommand command = connection.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = storedProcedure;
 
-                    AddParamethers(command, namedParams);
+                        AddParamethers(command, namedParams);
 
-                    command.Prepare();
-                    return command.ExecuteReader();
+                        command.Prepare();
+                        return command.ExecuteReader();
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -254,24 +259,27 @@ namespace NSTOX.DAL.DAL
         {
             try
             {
-                using (IDbCommand command = Connection.CreateCommand())
+                using (var connection = CreateConnection())
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = storedProcedure;
+                    using (IDbCommand command = connection.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = storedProcedure;
 
-                    AddParamethers(command, namedParams);
+                        AddParamethers(command, namedParams);
 
-                    var param = command.CreateParameter();
-                    param.DbType = DbType.Int32;
-                    param.Direction = ParameterDirection.ReturnValue;
-                    param.ParameterName = "@Return";
-                    command.Parameters.Add(param);
+                        var param = command.CreateParameter();
+                        param.DbType = DbType.Int32;
+                        param.Direction = ParameterDirection.ReturnValue;
+                        param.ParameterName = "@Return";
+                        command.Parameters.Add(param);
 
-                    command.Prepare();
-                    command.ExecuteNonQuery();
-                    
-                    param = (IDbDataParameter)command.Parameters["@Return"];
-                    return (int)param.Value;
+                        command.Prepare();
+                        command.ExecuteNonQuery();
+
+                        param = (IDbDataParameter)command.Parameters["@Return"];
+                        return (int)param.Value;
+                    }
                 }
             }
             catch (Exception ex)
