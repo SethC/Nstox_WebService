@@ -24,12 +24,13 @@ namespace NSTOX.DAL.DAL
             {
                 IDbConnection connection = null;
                 // Get an instance of the RetryManager class.
-                var retryManager = EnterpriseLibraryContainer.Current.GetInstance<RetryManager>();
+                //var retryManager = EnterpriseLibraryContainer.Current.GetInstance<RetryManager>();
 
                 // Create a retry policy that uses a default retry strategy from the 
                 // configuration.
-                var retryPolicy = retryManager.GetDefaultSqlConnectionRetryPolicy();
-                connection = new ReliableSqlConnection(ConnectionString, retryPolicy, retryPolicy);
+                //var retryPolicy = retryManager.GetDefaultSqlConnectionRetryPolicy();
+                //connection = new ReliableSqlConnection(ConnectionString, retryPolicy, retryPolicy);
+                connection = new SqlConnection(ConnectionString);
                 connection.Open();
                 return connection;
             }
