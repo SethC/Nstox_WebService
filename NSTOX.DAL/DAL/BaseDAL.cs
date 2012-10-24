@@ -5,10 +5,12 @@ using System.Text;
 using System.Reflection;
 using System.Data;
 using System.Data.SqlClient;
-using Microsoft.ApplicationBlocks.Data;
 using NSTOX.DAL.Helper;
 using System.Configuration;
 using NSTOX.DAL.Model;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling;
+using Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling.SqlAzure;
 
 namespace NSTOX.DAL.DAL
 {
@@ -16,20 +18,19 @@ namespace NSTOX.DAL.DAL
     {
         public static string ConnectionString { get { return ConfigurationManager.ConnectionStrings["NSTOXConnectionString"].ConnectionString; } }
 
-        private static SqlConnection connection;
-        protected static SqlConnection Connection
+        protected static IDbConnection Connection
         {
             get
             {
-                if (connection == null)
-                {
-                    connection = new SqlConnection(ConnectionString);
-                }
-                if (connection.State != System.Data.ConnectionState.Open)
-                {
-                    connection.Open();
-                }
+                IDbConnection connection = null;
+                // Get an instance of the RetryManager class.
+                var retryManager = EnterpriseLibraryContainer.Current.GetInstance<RetryManager>();
 
+                // Create a retry policy that uses a default retry strategy from the 
+                // configuration.
+                var retryPolicy = retryManager.GetDefaultSqlConnectionRetryPolicy();
+                connection = new ReliableSqlConnection(ConnectionString, retryPolicy);
+                connection.Open();
                 return connection;
             }
         }
@@ -47,7 +48,7 @@ namespace NSTOX.DAL.DAL
 
             DataTable table = new DataTable();
 
-            using (SqlDataReader reader = ExecuteReader(storedProcedure, namedParams))
+            using (IDataReader reader = ExecuteReader(storedProcedure, namedParams))
             {
                 PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
@@ -125,7 +126,7 @@ namespace NSTOX.DAL.DAL
         {
             List<T> result = new List<T>();
 
-            using (SqlDataReader reader = ExecuteReader(storedProcedure, namedParams))
+            using (IDataReader reader = ExecuteReader(storedProcedure, namedParams))
             {
                 if (!ColumnExists(reader, columnName))
                     return result;
@@ -157,49 +158,9 @@ namespace NSTOX.DAL.DAL
         /// <param name="namedParams">use the new anonymous dictionary: new {name = "value", name2 = "value2" }</param>
         /// <param name="connectionStringStringType">Connection string type</param>
         /// <returns></returns>
-        protected static SqlDataReader ExecuteReader(string storedProcedure, object namedParams)
+        protected static IDataReader ExecuteReader(string storedProcedure, object namedParams)
         {
             return ExecuteReader(storedProcedure, namedParams.ToDictionary());
-        }
-
-        /// <summary>
-        /// Executes a stored procedure using the parameter values and returns a DataReader instance
-        /// </summary>
-        /// <param name="storedProcedure">Stored procedure's name</param>
-        /// <param name="parameterValues">Parameter values</param>
-        /// <param name="connectionStringStringType">The type of the connection string</param>
-        /// <returns></returns>
-        protected static SqlDataReader ExecuteReader(string storedProcedure, params object[] parameterValues)
-        {
-            try
-            {
-                return SqlHelper.ExecuteReader(Connection, storedProcedure, parameterValues);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogException(ex);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// This method executes a stored procedure that does not return any data
-        /// </summary>
-        /// <param name="storedProcedure">Stored procedure's name</param>
-        /// <param name="parameterValues">Parameter values</param>
-        /// <param name="connectionStringStringType">The type of the connection string</param>
-        protected static int ExecuteNonQuery(string storedProcedure, params object[] parameterValues)
-        {
-            try
-            {
-                Logger.LogInfo(string.Format("Running ExecuteNonQuery: SP = {0}, Params = {1}", storedProcedure, string.Join(",", parameterValues)));
-                return SqlHelper.ExecuteNonQuery(Connection, storedProcedure, parameterValues);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogException(ex);
-                throw;
-            }
         }
 
         /// <summary>
@@ -217,8 +178,9 @@ namespace NSTOX.DAL.DAL
         {
             try
             {
-                using (SqlCommand command = new SqlCommand(query, Connection))
+                using (IDbCommand command = Connection.CreateCommand())
                 {
+                    command.CommandText = query;
                     command.ExecuteNonQuery();
                 }
             }
@@ -233,8 +195,9 @@ namespace NSTOX.DAL.DAL
         {
             try
             {
-                using (SqlCommand command = new SqlCommand(query, Connection))
+                using (IDbCommand command = Connection.CreateCommand())
                 {
+                    command.CommandText = query;
                     return command.ExecuteScalar();
                 }
             }
@@ -257,13 +220,14 @@ namespace NSTOX.DAL.DAL
         /// <param name="namedParams">The parameters dictionary</param>
         /// <param name="connectionStringStringType">The connection string type</param>
         /// <returns></returns>
-        private static SqlDataReader ExecuteReader(string storedProcedure, Dictionary<string, object> namedParams)
+        private static IDataReader ExecuteReader(string storedProcedure, Dictionary<string, object> namedParams)
         {
             try
             {
-                using (SqlCommand command = new SqlCommand(storedProcedure, Connection))
+                using (IDbCommand command = Connection.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = storedProcedure;
 
                     AddParamethers(command, namedParams);
 
@@ -289,16 +253,24 @@ namespace NSTOX.DAL.DAL
         {
             try
             {
-                using (SqlCommand command = new SqlCommand(storedProcedure, Connection))
+                using (IDbCommand command = Connection.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = storedProcedure;
 
                     AddParamethers(command, namedParams);
-                    command.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+
+                    var param = command.CreateParameter();
+                    param.DbType = DbType.Int32;
+                    param.Direction = ParameterDirection.ReturnValue;
+                    param.ParameterName = "@Return";
+                    command.Parameters.Add(param);
 
                     command.Prepare();
                     command.ExecuteNonQuery();
-                    return (int)command.Parameters["@Return"].Value;
+                    
+                    param = (IDbDataParameter)command.Parameters["@Return"];
+                    return (int)param.Value;
                 }
             }
             catch (Exception ex)
@@ -313,11 +285,18 @@ namespace NSTOX.DAL.DAL
         /// </summary>
         /// <param name="command">SqlCommand instance</param>
         /// <param name="namedParams">Named paramethers</param>
-        private static void AddParamethers(SqlCommand command, Dictionary<string, object> namedParams)
+        private static void AddParamethers(IDbCommand command, Dictionary<string, object> namedParams)
         {
             if (namedParams == null) return;
 
-            namedParams.ToList().ForEach(p => command.Parameters.AddWithValue(p.Key, p.Value == null ? DBNull.Value : p.Value));
+            foreach (var item in namedParams)
+            {
+                var param = command.CreateParameter();
+                param.ParameterName = item.Key;
+                param.Value = item.Value == null ? DBNull.Value : item.Value;
+                command.Parameters.Add(param);
+            }
+
         }
 
 
