@@ -29,7 +29,7 @@ namespace NSTOX.DAL.DAL
                 // Create a retry policy that uses a default retry strategy from the 
                 // configuration.
                 var retryPolicy = retryManager.GetDefaultSqlConnectionRetryPolicy();
-                connection = new ReliableSqlConnection(ConnectionString, retryPolicy);
+                connection = new ReliableSqlConnection(ConnectionString, retryPolicy, retryPolicy);
                 connection.Open();
                 return connection;
             }
