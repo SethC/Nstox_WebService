@@ -45,78 +45,82 @@ namespace NSTOX.DAL.DAL
             List<T> result = new List<T>();
 
             DataTable table = new DataTable();
-
-            using (IDataReader reader = ExecuteReader(storedProcedure, namedParams))
+            using (var connection = CreateConnection())
             {
-                PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
-                // build a data table that will be used by the debug window
-                int fieldCount = reader.FieldCount;
-                for (int i = 0; i < fieldCount; i++)
+                using (IDbCommand command = connection.CreateCommand())
                 {
-                    table.Columns.Add(reader.GetName(i), reader.GetFieldType(i));
-                }
-                table.BeginLoadData();
-                object[] values = new object[fieldCount];
-
-
-                while (reader.Read())
-                {
-                    // add the row to the table
-                    reader.GetValues(values);
-                    table.LoadDataRow(values, true);
-
-                    T item = new T();
-
-                    foreach (PropertyInfo p in props)
+                    using (IDataReader reader = ExecuteReader(storedProcedure, namedParams, connection, command))
                     {
-                        if (!ColumnExists(reader, p.Name))
-                            continue;
+                        PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-                        if (p.PropertyType == typeof(DateTime))
+                        // build a data table that will be used by the debug window
+                        int fieldCount = reader.FieldCount;
+                        for (int i = 0; i < fieldCount; i++)
                         {
-                            p.SetValue(item, reader[p.Name].SafelyToDateTime(), null);
+                            table.Columns.Add(reader.GetName(i), reader.GetFieldType(i));
                         }
-                        if (p.PropertyType == typeof(DateTime?))
+                        table.BeginLoadData();
+                        object[] values = new object[fieldCount];
+
+
+                        while (reader.Read())
                         {
-                            p.SetValue(item, reader[p.Name].SafelyToNullableDateTime(), null);
+                            // add the row to the table
+                            reader.GetValues(values);
+                            table.LoadDataRow(values, true);
+
+                            T item = new T();
+
+                            foreach (PropertyInfo p in props)
+                            {
+                                if (!ColumnExists(reader, p.Name))
+                                    continue;
+
+                                if (p.PropertyType == typeof(DateTime))
+                                {
+                                    p.SetValue(item, reader[p.Name].SafelyToDateTime(), null);
+                                }
+                                if (p.PropertyType == typeof(DateTime?))
+                                {
+                                    p.SetValue(item, reader[p.Name].SafelyToNullableDateTime(), null);
+                                }
+                                else if (p.PropertyType == typeof(Int32))
+                                {
+                                    p.SetValue(item, reader[p.Name].SafelyToInt(), null);
+                                }
+                                else if (p.PropertyType == typeof(int?))
+                                {
+                                    p.SetValue(item, reader[p.Name].SafelyToNullableInt(), null);
+                                }
+                                else if (p.PropertyType == typeof(long))
+                                {
+                                    p.SetValue(item, reader[p.Name].SafelyToLong(), null);
+                                }
+                                else if (p.PropertyType == typeof(string))
+                                {
+                                    p.SetValue(item, reader[p.Name].SafelyToStringDefaultEmpty(), null);
+                                }
+                                else if (p.PropertyType == typeof(double))
+                                {
+                                    p.SetValue(item, reader[p.Name].SafelyToDouble(), null);
+                                }
+                                else if (p.PropertyType == typeof(bool))
+                                {
+                                    p.SetValue(item, reader[p.Name].SafelyToBool(), null);
+                                }
+                                else if (p.PropertyType == typeof(InputFileType))
+                                {
+                                    p.SetValue(item, reader[p.Name].SafelyToEnum<InputFileType>(), null);
+                                }
+                            }
+
+                            result.Add(item);
                         }
-                        else if (p.PropertyType == typeof(Int32))
-                        {
-                            p.SetValue(item, reader[p.Name].SafelyToInt(), null);
-                        }
-                        else if (p.PropertyType == typeof(int?))
-                        {
-                            p.SetValue(item, reader[p.Name].SafelyToNullableInt(), null);
-                        }
-                        else if (p.PropertyType == typeof(long))
-                        {
-                            p.SetValue(item, reader[p.Name].SafelyToLong(), null);
-                        }
-                        else if (p.PropertyType == typeof(string))
-                        {
-                            p.SetValue(item, reader[p.Name].SafelyToStringDefaultEmpty(), null);
-                        }
-                        else if (p.PropertyType == typeof(double))
-                        {
-                            p.SetValue(item, reader[p.Name].SafelyToDouble(), null);
-                        }
-                        else if (p.PropertyType == typeof(bool))
-                        {
-                            p.SetValue(item, reader[p.Name].SafelyToBool(), null);
-                        }
-                        else if (p.PropertyType == typeof(InputFileType))
-                        {
-                            p.SetValue(item, reader[p.Name].SafelyToEnum<InputFileType>(), null);
-                        }
+
+                        table.EndLoadData();
                     }
-
-                    result.Add(item);
                 }
-
-                table.EndLoadData();
             }
-
             return result;
         }
 
@@ -124,28 +128,33 @@ namespace NSTOX.DAL.DAL
         {
             List<T> result = new List<T>();
 
-            using (IDataReader reader = ExecuteReader(storedProcedure, namedParams))
+            using (var connection = CreateConnection())
             {
-                if (!ColumnExists(reader, columnName))
-                    return result;
-
-                while (reader.Read())
+                using (IDbCommand command = connection.CreateCommand())
                 {
-                    if (typeof(T) == typeof(string))
+                    using (IDataReader reader = ExecuteReader(storedProcedure, namedParams, connection, command))
                     {
-                        result.Add((T)Convert.ChangeType(reader[columnName].SafelyToStringDefaultEmpty().Trim(), typeof(T)));
-                    }
-                    else if (typeof(T) == typeof(Int32))
-                    {
-                        result.Add((T)Convert.ChangeType(reader[columnName].SafelyToInt(), typeof(T)));
-                    }
-                    else if (typeof(T) == typeof(Int64))
-                    {
-                        result.Add((T)Convert.ChangeType(reader[columnName].SafelyToLong(), typeof(T)));
+                        if (!ColumnExists(reader, columnName))
+                            return result;
+
+                        while (reader.Read())
+                        {
+                            if (typeof(T) == typeof(string))
+                            {
+                                result.Add((T)Convert.ChangeType(reader[columnName].SafelyToStringDefaultEmpty().Trim(), typeof(T)));
+                            }
+                            else if (typeof(T) == typeof(Int32))
+                            {
+                                result.Add((T)Convert.ChangeType(reader[columnName].SafelyToInt(), typeof(T)));
+                            }
+                            else if (typeof(T) == typeof(Int64))
+                            {
+                                result.Add((T)Convert.ChangeType(reader[columnName].SafelyToLong(), typeof(T)));
+                            }
+                        }
                     }
                 }
             }
-
             return result;
         }
 
@@ -156,9 +165,10 @@ namespace NSTOX.DAL.DAL
         /// <param name="namedParams">use the new anonymous dictionary: new {name = "value", name2 = "value2" }</param>
         /// <param name="connectionStringStringType">Connection string type</param>
         /// <returns></returns>
-        protected static IDataReader ExecuteReader(string storedProcedure, object namedParams)
+        protected static IDataReader ExecuteReader(string storedProcedure, object namedParams, 
+            IDbConnection connection, IDbCommand command)
         {
-            return ExecuteReader(storedProcedure, namedParams.ToDictionary());
+            return ExecuteReader(storedProcedure, namedParams.ToDictionary(), connection, command);
         }
 
         /// <summary>
@@ -224,14 +234,12 @@ namespace NSTOX.DAL.DAL
         /// <param name="namedParams">The parameters dictionary</param>
         /// <param name="connectionStringStringType">The connection string type</param>
         /// <returns></returns>
-        private static IDataReader ExecuteReader(string storedProcedure, Dictionary<string, object> namedParams)
+        private static IDataReader ExecuteReader(string storedProcedure, Dictionary<string, object> namedParams, 
+            IDbConnection connection, IDbCommand command)
         {
             try
             {
-                using (var connection = CreateConnection())
-                {
-                    using (IDbCommand command = connection.CreateCommand())
-                    {
+                
                         command.CommandType = CommandType.StoredProcedure;
                         command.CommandText = storedProcedure;
 
@@ -239,8 +247,8 @@ namespace NSTOX.DAL.DAL
 
                         command.Prepare();
                         return command.ExecuteReader();
-                    }
-                }
+                    
+                
             }
             catch (Exception ex)
             {
