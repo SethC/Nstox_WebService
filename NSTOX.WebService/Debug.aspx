@@ -12,6 +12,8 @@
             <asp:TextBox runat="server" ID="txtID" />
             <asp:Button Text="Process" runat="server" OnClick="Process_Click" />
         </div>
+        <div>
+            <asp:Button Text="Error" runat="server" OnClick="Error_Click" /></div>
     </form>
 </body>
 </html>

@@ -22,6 +22,21 @@ namespace NSTOX.WebService
                 configSetter(connectionString);
             });
             CloudTraceListener.StorageTraceListener.Instance.Write("Initialised");
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        }
+
+        void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var ex = e.ExceptionObject as Exception;
+            if (ex != null)
+            {
+                Trace.WriteLine(ex.ToString());
+            }
+        }
+
+        void Global_Error(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         protected void Session_Start(object sender, EventArgs e)
