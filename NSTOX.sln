@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PCMaster", "PCMaster", "{8B
 		Libs\PCMaster\SLEXTRCT.exe = Libs\PCMaster\SLEXTRCT.exe
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup projects", "Setup projects", "{4682CDF0-1F7F-455C-8807-CE5C22087A53}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7247CD01-3E6D-490A-8AF4-8CF04A32964C}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -29,8 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSTOX.DAL", "NSTOX.DAL\NSTO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSTOX.BODataProcessor", "NSTOX.BODataProcessor\NSTOX.BODataProcessor.csproj", "{8B975A67-9E35-482E-8370-1081BD08E30B}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NSTOX.Setup", "NSTOX.Setup\NSTOX.Setup.vdproj", "{B073408D-03FD-4E90-845E-2E9BCCE49C69}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSTOX.HistoricalTransactions", "NSTOX.HistoricalTransactions\NSTOX.HistoricalTransactions.csproj", "{BA8456EB-0F1A-4612-BE8C-775A11B8BC49}"
 	ProjectSection(ProjectDependencies) = postProject
 		{65E038D4-207A-4EC8-BAF6-9B14DA719564} = {65E038D4-207A-4EC8-BAF6-9B14DA719564}
@@ -41,15 +37,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSTOX.DataPusher", "NSTOX.D
 		{65E038D4-207A-4EC8-BAF6-9B14DA719564} = {65E038D4-207A-4EC8-BAF6-9B14DA719564}
 	EndProjectSection
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NSTOX.HistoricalTransactions.Setup", "NSTOX.HistoricalTransactions.Setup\NSTOX.HistoricalTransactions.Setup.vdproj", "{AB9BA001-C533-4669-8C0C-A150CAEFC58F}"
-EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "CloudService", "CloudService\CloudService.ccproj", "{553B0F14-3EE5-4572-AC37-15BBBA347DE2}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 2
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = 
 		SccProjectUniqueName0 = NSTOX.Setup\\NSTOX.Setup.vdproj
 		SccProjectTopLevelParentUniqueName0 = NSTOX.sln
 		SccAuxPath0 = http://sfvm02:8080/tfs/sfp%20collection
@@ -103,16 +96,6 @@ Global
 		{8B975A67-9E35-482E-8370-1081BD08E30B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8B975A67-9E35-482E-8370-1081BD08E30B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8B975A67-9E35-482E-8370-1081BD08E30B}.Release|x86.ActiveCfg = Release|Any CPU
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Debug|Any CPU.ActiveCfg = Debug
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Debug|x86.ActiveCfg = Debug
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Debug|x86.Build.0 = Debug
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Release|Any CPU.ActiveCfg = Release
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Release|Any CPU.Build.0 = Release
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Release|Mixed Platforms.ActiveCfg = Release
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Release|Mixed Platforms.Build.0 = Release
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Release|x86.ActiveCfg = Release
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69}.Release|x86.Build.0 = Release
 		{BA8456EB-0F1A-4612-BE8C-775A11B8BC49}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{BA8456EB-0F1A-4612-BE8C-775A11B8BC49}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{BA8456EB-0F1A-4612-BE8C-775A11B8BC49}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -133,12 +116,6 @@ Global
 		{423B0CC7-A32F-4496-9FE5-162853B0976D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{423B0CC7-A32F-4496-9FE5-162853B0976D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{423B0CC7-A32F-4496-9FE5-162853B0976D}.Release|x86.ActiveCfg = Release|Any CPU
-		{AB9BA001-C533-4669-8C0C-A150CAEFC58F}.Debug|Any CPU.ActiveCfg = Debug
-		{AB9BA001-C533-4669-8C0C-A150CAEFC58F}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{AB9BA001-C533-4669-8C0C-A150CAEFC58F}.Debug|x86.ActiveCfg = Debug
-		{AB9BA001-C533-4669-8C0C-A150CAEFC58F}.Release|Any CPU.ActiveCfg = Release
-		{AB9BA001-C533-4669-8C0C-A150CAEFC58F}.Release|Mixed Platforms.ActiveCfg = Release
-		{AB9BA001-C533-4669-8C0C-A150CAEFC58F}.Release|x86.ActiveCfg = Release
 		{553B0F14-3EE5-4572-AC37-15BBBA347DE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{553B0F14-3EE5-4572-AC37-15BBBA347DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{553B0F14-3EE5-4572-AC37-15BBBA347DE2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -155,8 +132,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B6234A5-8B36-4ABA-B7CD-65DCFB153CBD} = {F94284CA-6CEC-4C66-82A9-A6C8AEC8674A}
-		{B073408D-03FD-4E90-845E-2E9BCCE49C69} = {4682CDF0-1F7F-455C-8807-CE5C22087A53}
-		{AB9BA001-C533-4669-8C0C-A150CAEFC58F} = {4682CDF0-1F7F-455C-8807-CE5C22087A53}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\TransientFaultHandling.Core.5.1.1209.0\lib\NET4;packages\EnterpriseLibrary.WindowsAzure.TransientFaultHandling.5.1.1209.0\lib\NET4;packages\EnterpriseLibrary.WindowsAzure.TransientFaultHandling.5.1.1209.0\DesignTime
