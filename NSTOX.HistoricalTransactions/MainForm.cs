@@ -21,6 +21,17 @@ namespace NSTOX.HistoricalTransactions
         {
             InitializeComponent();
             Logger.OnLogTriggered += new OnLog(Logger_OnLogTriggered);
+            this.FormClosing += MainForm_FormClosing;
+
+        }
+
+        void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason != CloseReason.ApplicationExitCall)
+            {
+                e.Cancel = true;
+                ((Form)sender).Visible = false;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -134,6 +145,16 @@ namespace NSTOX.HistoricalTransactions
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoggingBox.Text = string.Empty;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
         }
     }
 
