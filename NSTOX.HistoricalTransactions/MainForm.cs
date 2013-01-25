@@ -22,7 +22,6 @@ namespace NSTOX.HistoricalTransactions
             InitializeComponent();
             Logger.OnLogTriggered += new OnLog(Logger_OnLogTriggered);
             this.FormClosing += MainForm_FormClosing;
-
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -47,9 +46,7 @@ namespace NSTOX.HistoricalTransactions
             {
                 LoggingBox.Invoke(new Action<object>((o) =>
                 {
-                    LoggingBox.Text += string.Format("\r\n{0}, ", msg);
-                    LoggingBox.Select(LoggingBox.Text.Length, 0);
-                    LoggingBox.ScrollToCaret();
+                    Logger_OnLogTriggered(msg);
                 }), true);
             }
             else
@@ -57,8 +54,8 @@ namespace NSTOX.HistoricalTransactions
                 LoggingBox.Text += string.Format("\r\n{0}, ", msg);
                 LoggingBox.Select(LoggingBox.Text.Length, 0);
                 LoggingBox.ScrollToCaret();
+                Application.DoEvents();
             }
-            Application.DoEvents();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -84,24 +81,18 @@ namespace NSTOX.HistoricalTransactions
 
         private void ChangeWorkingStatus(bool working)
         {
-            if (working)
+            if (this.InvokeRequired)
             {
-                panel1.Enabled = false;
-                contextMenuStrip1.Enabled = false;
-                this.Cursor = Cursors.WaitCursor;
-                LoggingBox.Cursor = Cursors.WaitCursor;
+                this.Invoke(new Action<object>((o) => ChangeWorkingStatus(working)));
             }
             else
             {
-                if (this.InvokeRequired)
+                if (working)
                 {
-                    this.Invoke(new Action<object>((o) =>
-                    {
-                        panel1.Enabled = true;
-                        contextMenuStrip1.Enabled = true;
-                        this.Cursor = Cursors.Arrow;
-                        LoggingBox.Cursor = Cursors.Arrow;
-                    }), true);
+                    panel1.Enabled = false;
+                    contextMenuStrip1.Enabled = false;
+                    this.Cursor = Cursors.WaitCursor;
+                    LoggingBox.Cursor = Cursors.WaitCursor;
                 }
                 else
                 {
@@ -134,7 +125,7 @@ namespace NSTOX.HistoricalTransactions
                 {
                     using (var fs = File.OpenRead(odf.FileName))
                     {
-                        Pusher.PushBOFileFromZip(BOFileType.Transactions, fs, StartDate.Value.Date);                    
+                        Pusher.PushBOFileFromZip(BOFileType.Transactions, fs, StartDate.Value.Date);
                     }
                 }
                 return true;

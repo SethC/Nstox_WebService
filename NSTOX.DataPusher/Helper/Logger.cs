@@ -43,7 +43,7 @@ namespace NSTOX.DataPusher.Helper
             if (eventLog != null)
                 try
                 {
-                    string msg = string.Format("{0}\r\n{1}", ex.Message, ex.StackTrace);
+                    string msg = string.Format("{0}{2}{1}", ex.Message, ex.StackTrace, Environment.NewLine);
                     FireEventLogEvent(msg);
 
                     eventLog.WriteEntry(msg, EventLogEntryType.Error);
