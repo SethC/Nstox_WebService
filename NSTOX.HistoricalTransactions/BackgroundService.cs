@@ -8,9 +8,9 @@ using System.Threading;
 
 namespace NSTOX.HistoricalTransactions
 {
-    class BackgroundService
+    class BackgroundService : IDisposable
     {
-        Timer scheduleTimer;
+        Timer scheduleTimer = null;
 
         private DateTime TimeToRun = ConfigurationHelper.TimeToRun;
         private int IntervalBetweenCalls = (int)TimeSpan.FromDays(1).TotalMilliseconds;
@@ -23,7 +23,7 @@ namespace NSTOX.HistoricalTransactions
             return (int)TimeToRun.Subtract(DateTime.Now).TotalMilliseconds;
         }
 
-        private void InitializeTimer()
+        public void InitializeTimer()
         {
             if (scheduleTimer != null)
             {
@@ -46,6 +46,12 @@ namespace NSTOX.HistoricalTransactions
             {
                 InitializeTimer();
             }
+        }
+
+        void IDisposable.Dispose()
+        {
+            if (scheduleTimer != null)
+                scheduleTimer.Dispose();
         }
     }
 }

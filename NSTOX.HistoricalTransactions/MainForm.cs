@@ -16,6 +16,7 @@ namespace NSTOX.HistoricalTransactions
     public partial class MainForm : Form
     {
         Thread thread = null;
+        BackgroundService service = new BackgroundService();
 
         public MainForm()
         {
@@ -24,6 +25,7 @@ namespace NSTOX.HistoricalTransactions
             this.FormClosing += MainForm_FormClosing;
             Logger_OnLogTriggered("Service is running in the background");
             Logger_OnLogTriggered("To upload transactions from a previous day please use the controls above");
+            service.InitializeTimer();
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
