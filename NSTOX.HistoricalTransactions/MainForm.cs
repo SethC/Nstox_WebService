@@ -23,9 +23,9 @@ namespace NSTOX.HistoricalTransactions
             InitializeComponent();
             Logger.OnLogTriggered += new OnLog(Logger_OnLogTriggered);
             this.FormClosing += MainForm_FormClosing;
-            Logger_OnLogTriggered("Service is running in the background");
-            Logger_OnLogTriggered("To upload transactions from a previous day please use the controls above");
-            service.InitializeTimer();
+            //Logger_OnLogTriggered("Service is running in the background");
+            //Logger_OnLogTriggered("To upload transactions from a previous day please use the controls above");
+            //service.InitializeTimer();
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
