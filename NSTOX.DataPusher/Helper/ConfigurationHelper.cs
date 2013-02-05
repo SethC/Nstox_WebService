@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Configuration;
 
@@ -45,7 +46,10 @@ namespace NSTOX.DataPusher.Helper
 
         public static string GetConfigValue(string key)
         {
-            return config.AppSettings.Settings[key].Value;
+            if (config.AppSettings.Settings.AllKeys.Contains(key))
+                return config.AppSettings.Settings[key].Value;
+            else
+                return null;
         }
 
         public static void SetConfigValue(string key, string value)
