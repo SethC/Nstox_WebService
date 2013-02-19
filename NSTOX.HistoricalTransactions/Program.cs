@@ -16,7 +16,7 @@ namespace NSTOX.HistoricalTransactions
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new MenuForm());
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

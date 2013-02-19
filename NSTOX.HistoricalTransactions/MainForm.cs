@@ -16,27 +16,15 @@ namespace NSTOX.HistoricalTransactions
     public partial class MainForm : Form
     {
         Thread thread = null;
-        BackgroundService service = new BackgroundService();
-        ClickOnceUpdater updater = new ClickOnceUpdater();
-        AutoStarter starter = new AutoStarter();
+        
 
         public MainForm()
         {
             InitializeComponent();
             Logger.OnLogTriggered += new OnLog(Logger_OnLogTriggered);
-            this.FormClosing += MainForm_FormClosing;
             //Logger_OnLogTriggered("Service is running in the background");
             //Logger_OnLogTriggered("To upload transactions from a previous day please use the controls above");
             //service.InitializeTimer();
-        }
-
-        void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason != CloseReason.ApplicationExitCall)
-            {
-                e.Cancel = true;
-                ((Form)sender).Visible = false;
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -144,15 +132,6 @@ namespace NSTOX.HistoricalTransactions
             LoggingBox.Text = string.Empty;
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Show();
-        }
     }
 
     public class StartAndEndDate
