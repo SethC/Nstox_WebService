@@ -59,6 +59,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Settings";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // lblTitle
             // 
@@ -87,7 +88,7 @@
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.iconContextMenuStrip.Name = "iconContextMenuStrip";
-            this.iconContextMenuStrip.Size = new System.Drawing.Size(153, 70);
+            this.iconContextMenuStrip.Size = new System.Drawing.Size(104, 48);
             // 
             // openToolStripMenuItem
             // 
