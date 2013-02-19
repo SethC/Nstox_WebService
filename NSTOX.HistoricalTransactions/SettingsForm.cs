@@ -27,6 +27,7 @@ namespace NSTOX.HistoricalTransactions
         {
             ConfigurationHelper.SetConfigValue("RetailerId", retailerId.Value.ToString());
             ConfigurationHelper.SetConfigValue("RetailerName", retailerName.Text);
+            this.Close();
         }
     }
 }

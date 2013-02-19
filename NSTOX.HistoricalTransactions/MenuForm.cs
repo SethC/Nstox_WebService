@@ -56,5 +56,11 @@ namespace NSTOX.HistoricalTransactions
                 sf.ShowDialog();
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var hf = new HelpForm();
+            hf.Show();
+        }
     }
 }
