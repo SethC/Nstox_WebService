@@ -17,6 +17,8 @@ namespace NSTOX.HistoricalTransactions
     {
         Thread thread = null;
         BackgroundService service = new BackgroundService();
+        ClickOnceUpdater updater = new ClickOnceUpdater();
+        AutoStarter starter = new AutoStarter();
 
         public MainForm()
         {
