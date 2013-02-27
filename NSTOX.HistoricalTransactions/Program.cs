@@ -24,12 +24,16 @@ namespace NSTOX.HistoricalTransactions
             if (!createdNew)
             {
                 instanceMutex = null;
+                SingleProgramInstance spi = new SingleProgramInstance();
+                spi.RaiseOtherProcess();
                 return;
             } 
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MenuForm());
+            Form menuForm = new MenuForm();
+            Application.AddMessageFilter(new MyMessageFilter(menuForm));
+            Application.Run(menuForm);
         }
 
         static void Application_ApplicationExit(object sender, EventArgs e)
