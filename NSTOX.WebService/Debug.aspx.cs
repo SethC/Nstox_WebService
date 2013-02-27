@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSTOX.BODataProcessor.Processors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,8 +22,8 @@ namespace NSTOX.WebService
 
         protected void Process_Click(object sender, EventArgs e)
         {
-            BOService svc = new BOService();
-            svc.ProcessBOFilesForRetailer(int.Parse(txtID.Text));
+            int retailerId = int.Parse(txtID.Text);
+            JobsProcessor.ProcessJobs(retailerId);
         }
     }
 }
