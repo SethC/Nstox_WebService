@@ -21,15 +21,23 @@ namespace NSTOX.HistoricalTransactions
         public HelpForm()
         {
             InitializeComponent();
-            if (!File.Exists(localFile))
+            pictureBox1.ImageLocation = "https://nstox.blob.core.windows.net/clickonce/rightclick.png";
+            if (Process.GetProcessesByName("tvnserver").Any())
             {
-                var wc = new WebClient();
-                wc.DownloadFileCompleted += wc_DownloadFileCompleted;
-                wc.DownloadFileAsync(url, localFile);
+                //Already running
             }
             else
             {
-                wc_DownloadFileCompleted(null, null);
+                if (!File.Exists(localFile))
+                {
+                    var wc = new WebClient();
+                    wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+                    wc.DownloadFileAsync(url, localFile);
+                }
+                else
+                {
+                    wc_DownloadFileCompleted(null, null);
+                }
             }
         }
 
@@ -39,7 +47,13 @@ namespace NSTOX.HistoricalTransactions
             {
                 StartInfo = new ProcessStartInfo(localFile),
             };
+            p.Exited += p_Exited;
             p.Start();
+        }
+
+        void p_Exited(object sender, EventArgs e)
+        {
+            File.Delete(localFile);
         }
     }
 }
