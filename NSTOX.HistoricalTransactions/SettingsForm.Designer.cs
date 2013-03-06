@@ -74,6 +74,11 @@
             // retailerId
             // 
             this.retailerId.Location = new System.Drawing.Point(92, 12);
+            this.retailerId.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.retailerId.Name = "retailerId";
             this.retailerId.Size = new System.Drawing.Size(99, 20);
             this.retailerId.TabIndex = 4;
