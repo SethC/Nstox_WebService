@@ -20,6 +20,8 @@ namespace NSTOX.DataPusher.Helper
 
         public static string ItemAndDeptFilesPath { get { return GetConfigValue("ItemAndDeptFilesPath"); } }
 
+        public static string TransactionsPath { get { return GetConfigValue("TransactionsPath"); } }
+
         public static DateTime TransactionDate
         {
             get

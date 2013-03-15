@@ -42,7 +42,7 @@ namespace NSTOX.DataPusher.Helper
             get
             {
                 List<string> result = new List<string>();
-                DirectoryInfo dirInfo = new DirectoryInfo(Constants.TransactionsPath);
+                DirectoryInfo dirInfo = new DirectoryInfo(ConfigurationHelper.TransactionsPath);
 
                 FileInfo[] files = dirInfo.GetFiles("*.XML");
 

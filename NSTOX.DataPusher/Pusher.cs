@@ -105,7 +105,7 @@ namespace NSTOX.DataPusher
 
             for (DateTime date = startDate.Date; date.Date <= endDate.Date; date = date.AddDays(1))
             {
-                string transPath = Path.Combine(Constants.TransactionsPath, string.Format("trans_{0}.xml", date.ToString("yyyyMMdd")));
+                string transPath = Path.Combine(ConfigurationHelper.TransactionsPath, string.Format("trans_{0}.xml", date.ToString("yyyyMMdd")));
 
                 bool transXMLCreated = ExtractUtilityHelper.QDXTransactionToXML(date, transPath);
 
@@ -191,7 +191,7 @@ namespace NSTOX.DataPusher
         private static void DeleteAllTransactionXMLs()
         {
             // delete all transaction files
-            DirectoryInfo dirInfo = new DirectoryInfo(Constants.TransactionsPath);
+            DirectoryInfo dirInfo = new DirectoryInfo(ConfigurationHelper.TransactionsPath);
             FileInfo[] files = dirInfo.GetFiles("*.XML");
             if (files != null && files.Length > 0)
             {
