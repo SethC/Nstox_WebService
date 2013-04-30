@@ -74,19 +74,21 @@ namespace NSTOX.DataPusher.Helper
         {
             try
             {
-                Process p = new Process();
-                p.StartInfo.FileName = fileName;
-                p.StartInfo.WorkingDirectory = Path.GetDirectoryName(fileName);
-                p.StartInfo.UseShellExecute = true;
-                p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                p.StartInfo.CreateNoWindow = false;
-                p.StartInfo.Arguments = arguments;
+                using (Process p = new Process())
+                {
+                    p.StartInfo.FileName = fileName;
+                    p.StartInfo.WorkingDirectory = Path.GetDirectoryName(fileName);
+                    p.StartInfo.UseShellExecute = true;
+                    p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    p.StartInfo.CreateNoWindow = false;
+                    p.StartInfo.Arguments = arguments;
 
-                p.OutputDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
-                p.ErrorDataReceived += new DataReceivedEventHandler(p_ErrorDataReceived);
+                    p.OutputDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
+                    p.ErrorDataReceived += new DataReceivedEventHandler(p_ErrorDataReceived);
 
-                p.Start();
-                p.WaitForExit();
+                    p.Start();
+                    p.WaitForExit();
+                }
             }
             catch (Exception ex)
             {

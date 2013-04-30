@@ -34,11 +34,6 @@ namespace NSTOX.WebService
             }
         }
 
-        void Global_Error(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         protected void Session_Start(object sender, EventArgs e)
         {
 
