@@ -77,7 +77,7 @@ namespace NSTOX.HistoricalTransactions
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new Action<object>((o) => ChangeWorkingStatus(working)));
+                this.Invoke(new Action(() => ChangeWorkingStatus(working)));
             }
             else
             {
