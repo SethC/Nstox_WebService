@@ -165,7 +165,7 @@ namespace NSTOX.DAL.DAL
         /// <param name="namedParams">use the new anonymous dictionary: new {name = "value", name2 = "value2" }</param>
         /// <param name="connectionStringStringType">Connection string type</param>
         /// <returns></returns>
-        protected static IDataReader ExecuteReader(string storedProcedure, object namedParams, 
+        protected static IDataReader ExecuteReader(string storedProcedure, object namedParams,
             IDbConnection connection, IDbCommand command)
         {
             return ExecuteReader(storedProcedure, namedParams.ToDictionary(), connection, command);
@@ -197,8 +197,9 @@ namespace NSTOX.DAL.DAL
             }
             catch (Exception ex)
             {
-                Logger.LogException(ex);
-                throw;
+                var e = new DalException(query, ex);
+                Logger.LogException(e);
+                throw e;
             }
         }
 
@@ -217,8 +218,9 @@ namespace NSTOX.DAL.DAL
             }
             catch (Exception ex)
             {
-                Logger.LogException(ex);
-                throw;
+                var e = new DalException(query, ex);
+                Logger.LogException(e);
+                throw e;
             }
         }
 
@@ -234,26 +236,27 @@ namespace NSTOX.DAL.DAL
         /// <param name="namedParams">The parameters dictionary</param>
         /// <param name="connectionStringStringType">The connection string type</param>
         /// <returns></returns>
-        private static IDataReader ExecuteReader(string storedProcedure, Dictionary<string, object> namedParams, 
+        private static IDataReader ExecuteReader(string storedProcedure, Dictionary<string, object> namedParams,
             IDbConnection connection, IDbCommand command)
         {
             try
             {
-                
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.CommandText = storedProcedure;
 
-                        AddParamethers(command, namedParams);
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = storedProcedure;
 
-                        command.Prepare();
-                        return command.ExecuteReader();
-                    
-                
+                AddParamethers(command, namedParams);
+
+                command.Prepare();
+                return command.ExecuteReader();
+
+
             }
             catch (Exception ex)
             {
-                Logger.LogException(ex);
-                throw;
+                var e = new DalException(storedProcedure, ex);
+                Logger.LogException(e);
+                throw e;
             }
         }
 
@@ -292,8 +295,9 @@ namespace NSTOX.DAL.DAL
             }
             catch (Exception ex)
             {
-                Logger.LogException(ex);
-                throw;
+                var e = new DalException(storedProcedure, ex);
+                Logger.LogException(e);
+                throw e;
             }
         }
 

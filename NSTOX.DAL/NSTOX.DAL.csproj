@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DalException.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\DataErrorDAL.cs" />
     <Compile Include="DAL\DepartmentDAL.cs" />
