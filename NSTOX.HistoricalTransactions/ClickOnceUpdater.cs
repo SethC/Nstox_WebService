@@ -4,26 +4,35 @@ using System.Deployment.Application;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace NSTOX.HistoricalTransactions
 {
     class ClickOnceUpdater
     {
-        System.Timers.Timer t = new System.Timers.Timer(TimeSpan.FromDays(2).TotalMilliseconds);
+        System.Timers.Timer t = new System.Timers.Timer(TimeSpan.FromDays(1).TotalMilliseconds);
 
         public ClickOnceUpdater()
         {
             t.Elapsed += t_Elapsed;
+            t.Start();
         }
 
         void t_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Update();
+            if (Update())
+            {
+                Application.Restart();
+            }
         }
 
         public void UpdateAsync()
         {
-            ThreadPool.QueueUserWorkItem((a) => { Update(); });
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                var deployment = ApplicationDeployment.CurrentDeployment;
+                deployment.UpdateAsync();
+            }
         }
 
         public bool Update()

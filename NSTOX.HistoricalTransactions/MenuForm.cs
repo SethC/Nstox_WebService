@@ -19,7 +19,7 @@ namespace NSTOX.HistoricalTransactions
         {
             InitializeComponent();
             this.FormClosing += MainForm_FormClosing;
-
+            service.InitializeTimer();
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
