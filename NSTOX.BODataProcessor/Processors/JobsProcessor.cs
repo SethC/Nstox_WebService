@@ -7,6 +7,7 @@ using NSTOX.DAL.DAL;
 using System.IO;
 using NSTOX.BODataProcessor.Helper;
 using NSTOX.DAL.Helper;
+using System.Diagnostics;
 
 namespace NSTOX.BODataProcessor.Processors
 {
@@ -14,10 +15,13 @@ namespace NSTOX.BODataProcessor.Processors
     {
         public static void ProcessJobs(int retailerId)
         {
+            Trace.WriteLine("Checking for available jobs");
             List<JobAudit> jobs = JobAuditDAL.GetNewJobAudits(retailerId);
 
             if (jobs == null || jobs.Count == 0)
                 return;
+
+            Trace.WriteLine(jobs.Count + " jobs found");
 
             DepartmentProcessor deptProcessor = new DepartmentProcessor();
             ItemProcessor itmProcessor = new ItemProcessor();
@@ -29,11 +33,14 @@ namespace NSTOX.BODataProcessor.Processors
 
                 if (!BOFilesHelper.Exists(job.FilePath))
                 {
+                    Trace.WriteLine("Job Not Found - " + job.Id);
                     job.JobStatus = BOFileStatus.FileNotFound;
                     JobAuditDAL.UpdateJobAudit(job);
                     jobs.Remove(job);
                     continue;
                 }
+
+                Trace.WriteLine(job.FileType + " Job Found");
 
                 switch (job.FileType)
                 {
