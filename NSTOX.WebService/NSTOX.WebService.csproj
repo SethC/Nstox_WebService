@@ -160,11 +160,14 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Helper\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
     <Content Include="packages.config" />
+    <Content Include="Views\Diagnostics\Logs.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NSTOX.BODataProcessor\NSTOX.BODataProcessor.csproj">

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CloudTraceListener;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.StorageClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,8 +17,15 @@ namespace NSTOX.WebService.Controllers
             {
                 date = DateTime.Today.ToString("yyyy-MM-dd");
             }
-            return View();
-        }
 
+            var csa = CloudStorageAccount.FromConfigurationSetting("CloudConnectionString");
+            var ctc = new CloudTableClient(csa.TableEndpoint, csa.Credentials);
+            var ctx = ctc.GetDataServiceContext();
+            var logs = ctx.CreateQuery<TraceRecord>("logs")
+                .Where(a => a.PartitionKey == date)
+                .ToArray()
+                .OrderByDescending(a => a.Timestamp);
+            return View(logs);
+        }
     }
 }
