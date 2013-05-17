@@ -15,11 +15,14 @@ namespace NSTOX.BODataProcessor.Processors
     {
         public static void ProcessJobs(int retailerId)
         {
-            Trace.WriteLine("Checking for available jobs");
+            Trace.WriteLine("Checking for available jobs - " + retailerId);
             List<JobAudit> jobs = JobAuditDAL.GetNewJobAudits(retailerId);
 
             if (jobs == null || jobs.Count == 0)
+            {
+                Trace.WriteLine("No Jobs Waiting");
                 return;
+            }
 
             Trace.WriteLine(jobs.Count + " jobs found");
 
