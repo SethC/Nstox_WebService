@@ -137,6 +137,7 @@
     </Compile>
     <Content Include="Debug.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="favicon.ico" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
