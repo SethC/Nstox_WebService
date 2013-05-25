@@ -43,7 +43,7 @@ namespace NSTOX.BODataProcessor.Processors
                     continue;
                 }
 
-                Trace.WriteLine(job.FileType + " Job Found");
+                Trace.WriteLine(job.FileType + " Job Found" + "(" + job.Id + ")");
 
                 switch (job.FileType)
                 {
@@ -59,6 +59,8 @@ namespace NSTOX.BODataProcessor.Processors
                     default:
                         break;
                 }
+
+                Trace.WriteLine("Job Processed");
 
                 jobs = JobAuditDAL.GetNewJobAudits(retailerId);
             }
