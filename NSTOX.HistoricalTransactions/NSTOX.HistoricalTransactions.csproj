@@ -83,6 +83,9 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net35-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="PostLog">
+      <HintPath>..\packages\log4net.PostLog.0.1\lib\net35\PostLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />

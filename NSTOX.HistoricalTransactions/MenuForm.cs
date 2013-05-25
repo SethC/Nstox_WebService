@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +12,8 @@ namespace NSTOX.HistoricalTransactions
 {
     public partial class MenuForm : Form
     {
+        static readonly ILog log = LogManager.GetLogger(typeof(MenuForm));
+
         BackgroundService service = new BackgroundService();
         ClickOnceUpdater updater = new ClickOnceUpdater();
         AutoStarter starter = new AutoStarter();
@@ -20,6 +23,8 @@ namespace NSTOX.HistoricalTransactions
             InitializeComponent();
             this.FormClosing += MainForm_FormClosing;
             service.InitializeTimer();
+
+            log.Debug("Application Started");
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)

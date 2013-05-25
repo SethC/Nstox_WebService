@@ -1,4 +1,5 @@
-﻿using NSTOX.DataPusher;
+﻿using log4net;
+using NSTOX.DataPusher;
 using NSTOX.DataPusher.Helper;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace NSTOX.HistoricalTransactions
 {
     class BackgroundService : IDisposable
     {
+        static readonly ILog log = LogManager.GetLogger(typeof(BackgroundService));
+
         Timer scheduleTimer = null;
 
         private DateTime TimeToRun = ConfigurationHelper.TimeToRun;
@@ -32,7 +35,8 @@ namespace NSTOX.HistoricalTransactions
             }
 
             int timeToFirstExecution = GetIntervalToEventFire();
-            
+            log.Debug(string.Format("Background Service firing in {0} milliseconds ({1})", timeToFirstExecution, TimeToRun));
+
             scheduleTimer = new Timer(scheduleTimer_Elapsed, null, timeToFirstExecution, IntervalBetweenCalls);
         }
 
@@ -40,6 +44,7 @@ namespace NSTOX.HistoricalTransactions
         {
             try
             {
+                log.Debug("Background Service Triggered");
                 Pusher.RunJob();
             }
             finally

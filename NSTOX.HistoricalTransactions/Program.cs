@@ -27,7 +27,9 @@ namespace NSTOX.HistoricalTransactions
                 SingleProgramInstance spi = new SingleProgramInstance();
                 spi.RaiseOtherProcess();
                 return;
-            } 
+            }
+
+            log4net.Config.XmlConfigurator.Configure();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

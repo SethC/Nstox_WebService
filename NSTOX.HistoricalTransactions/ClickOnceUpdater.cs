@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Deployment.Application;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace NSTOX.HistoricalTransactions
 {
     class ClickOnceUpdater
     {
+        static readonly ILog log = LogManager.GetLogger(typeof(ClickOnceUpdater));
+
         System.Timers.Timer t = new System.Timers.Timer(TimeSpan.FromDays(1).TotalMilliseconds);
 
         public ClickOnceUpdater()
@@ -20,6 +23,7 @@ namespace NSTOX.HistoricalTransactions
 
         void t_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            log.Debug("Checking for Updates");
             if (Update())
             {
                 Application.Restart();
