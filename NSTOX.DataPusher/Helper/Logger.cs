@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using System.IO;
+using log4net;
 
 namespace NSTOX.DataPusher.Helper
 {
@@ -10,6 +11,8 @@ namespace NSTOX.DataPusher.Helper
 
     public static class Logger
     {
+        static readonly ILog log = LogManager.GetLogger(typeof(Logger));
+
         private const string eventSource = "NSTOX";
         private const string eventLogName = "NSTOXLog";
 
@@ -43,6 +46,7 @@ namespace NSTOX.DataPusher.Helper
             if (eventLog != null)
                 try
                 {
+                    log.Error("Exception", ex);
                     string msg = string.Format("{0}{2}{1}", ex.Message, ex.StackTrace, Environment.NewLine);
                     FireEventLogEvent(msg);
 
@@ -54,6 +58,8 @@ namespace NSTOX.DataPusher.Helper
         public static void LogInfo(string message, EventLogEntryType entryType = EventLogEntryType.Information)
         {
             string msg = string.Format("{0} -> {1}", DateTime.Now.ToString("HH:mm:ss"), message);
+            log.Debug(msg);
+
             FireEventLogEvent(msg);
 
             messageSB.AppendLine(msg);
