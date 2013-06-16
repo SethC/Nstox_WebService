@@ -46,6 +46,7 @@ namespace NSTOX.HistoricalTransactions
             {
                 log.Debug("Background Service Triggered");
                 Pusher.RunJob();
+                log.Debug("Background Service Completed");
             }
             finally
             {

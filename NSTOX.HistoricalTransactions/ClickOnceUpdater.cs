@@ -13,7 +13,7 @@ namespace NSTOX.HistoricalTransactions
     {
         static readonly ILog log = LogManager.GetLogger(typeof(ClickOnceUpdater));
 
-        System.Timers.Timer t = new System.Timers.Timer(TimeSpan.FromDays(1).TotalMilliseconds);
+        System.Timers.Timer t = new System.Timers.Timer(TimeSpan.FromHours(1).TotalMilliseconds);
 
         public ClickOnceUpdater()
         {
@@ -26,6 +26,7 @@ namespace NSTOX.HistoricalTransactions
             log.Debug("Checking for Updates");
             if (Update())
             {
+                log.Debug("Update found, restarting...");
                 Application.Restart();
             }
         }

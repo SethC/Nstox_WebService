@@ -1,4 +1,6 @@
-﻿using System;
+﻿using log4net;
+using log4net.Core;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
@@ -11,12 +13,18 @@ namespace NSTOX.HistoricalTransactions
     {
         static Mutex instanceMutex = null;
 
+        static ILog log;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            log4net.Config.XmlConfigurator.Configure();
+
+            log = LogManager.GetLogger(typeof(Program));
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.ApplicationExit += Application_ApplicationExit;
             bool createdNew;
@@ -29,7 +37,7 @@ namespace NSTOX.HistoricalTransactions
                 return;
             }
 
-            log4net.Config.XmlConfigurator.Configure();
+            log.Debug("Starting HistoricalTransactions");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -48,6 +56,7 @@ namespace NSTOX.HistoricalTransactions
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            log.Error("AppDomain Unhandler", e.ExceptionObject as Exception);
             MessageBox.Show(e.ExceptionObject.ToString());
         }
     }
