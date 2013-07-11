@@ -32,7 +32,8 @@ namespace NSTOX.WebService.Controllers
         [HttpPost]
         public ActionResult LogMsg(string date, string level, string message, string exception)
         {
-            Trace.WriteLine("CLIENT " + level + ": " + message);
+            string msg = string.Join(" ", message, exception);
+            Trace.WriteLine("CLIENT " + level + ": " + msg);
             return new EmptyResult();
         }
     }
